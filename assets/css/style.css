@@ -376,30 +376,3 @@ a:hover {
   }
 }
 
-
-
-.sidebar .folder-title {
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-weight: bold;
-  display: block;
-  padding: 0.5rem 1rem;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-}
-
-.sidebar .folder.collapsed > .folder-items {
-  display: none;
-}
-
-.sidebar .folder:not(.collapsed) > .folder-items {
-  display: block;
-}
-
-.sidebar nav ul ul {
-  padding-left: 1rem;
-  border-left: 1px solid var(--line-color);
-  margin-left: 0.5rem;
-}

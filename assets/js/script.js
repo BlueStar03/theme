@@ -238,36 +238,3 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-// Sidebar collapsible folders with localStorage persistence
-document.addEventListener('DOMContentLoaded', () => {
-  const FOLDER_STATE_KEY = 'sidebarFolders';
-  let folderState = {};
-
-  // Load saved state
-  try {
-    folderState = JSON.parse(localStorage.getItem(FOLDER_STATE_KEY)) || {};
-  } catch {
-    folderState = {};
-  }
-
-  document.querySelectorAll('.sidebar .folder').forEach(folderEl => {
-    const button = folderEl.querySelector('.folder-title');
-    const folderName = button.textContent.trim();
-
-    // Apply saved state
-    if (folderState[folderName] === false) {
-      folderEl.classList.add('collapsed');
-    } else if (folderState[folderName] === true) {
-      folderEl.classList.remove('collapsed');
-    }
-
-    // Click handler
-    button.addEventListener('click', () => {
-      folderEl.classList.toggle('collapsed');
-      const isOpen = !folderEl.classList.contains('collapsed');
-      folderState[folderName] = isOpen;
-      localStorage.setItem(FOLDER_STATE_KEY, JSON.stringify(folderState));
-    });
-  });
-});

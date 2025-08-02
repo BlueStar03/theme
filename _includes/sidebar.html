@@ -3,103 +3,16 @@
   <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
 </div>
 
-  <!-- Auto-generated navigation -->
-  <nav>
-    <ul class="sidebar-nav">
-      {%- comment -%} Separate root and folder docs {%- endcomment -%}
-      {% assign root_docs = "" | split: "" %}
-      {% assign folder_docs = "" | split: "" %}
-
-      {% for doc in site.docs %}
-        {% assign segments = doc.path | split: "/" %}
-        {% if segments.size <= 2 %}
-          {% assign root_docs = root_docs | push: doc %}
-        {% else %}
-          {% assign folder_docs = folder_docs | push: doc %}
-        {% endif %}
-      {% endfor %}
-
-      {%- assign root_sorted = root_docs | sort: "order" -%}
-      {% for doc in root_sorted %}
-        <li>
-          <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
-        </li>
-      {% endfor %}
-
-      {%- comment -%} Group by folder {%- endcomment -%}
-      {% assign grouped = folder_docs | sort: "path" | group_by_exp: "doc", "doc.path | split: '/' | slice:1,1" %}
-
-      {%- comment -%}
-        Build a list of folder metadata: name, index doc (if any), order, and items.
-      {%- endcomment -%}
-      {% assign folders_meta = "" | split: "" %}
-      {% for group in grouped %}
-        {% assign folder = group.name %}
-        {% assign items = group.items | sort: "order" %}
-
-        {%- assign index_doc = nil -%}
-        {%- for d in items -%}
-          {%- assign d_path_parts = d.path | split: "/" -%}
-          {%- assign d_filename = d_path_parts | last -%}
-          {%- if d_filename == "index.md" or d_filename == "index.html" -%}
-            {%- assign index_doc = d -%}
-          {%- endif -%}
-        {%- endfor -%}
-
-        {%- assign folder_title = folder | replace: "-", " " | capitalize -%}
-        {%- assign folder_order = 9999 -%}
-        {%- assign folder_link = "" -%}
-        {%- if index_doc -%}
-          {%- assign folder_title = index_doc.title | default: folder_title -%}
-          {%- assign folder_order = index_doc.order | default: 9999 -%}
-          {%- assign folder_link = index_doc.url -%}
-        {%- endif -%}
-
-        {%- assign folder_data = folder_title | append: "||" | append: folder_order | append: "||" | append: folder_link -%}
-        {%- assign folder_data = folder_data | append: "||" | append: folder -%}
-        {%- assign folder_items = items -%}
-
-        {%- capture folder_block -%}
-          {{ folder_data }}
-        {%- endcapture -%}
-        {%- assign folders_meta = folders_meta | push: folder_block -%}
-      {% endfor %}
-
-      {%- assign folders_sorted = folders_meta | sort_natural -%}
-
-      {%- comment -%}
-        Render folders using the metadata we built
-      {%- endcomment -%}
-      {% for f in folders_sorted %}
-        {% assign parts = f | split: "||" %}
-        {% assign f_title = parts[0] %}
-        {% assign f_order = parts[1] %}
-        {% assign f_link = parts[2] %}
-        {% assign f_name = parts[3] %}
-
-        {% assign group = grouped | where: "name", f_name | first %}
-        {% assign items = group.items | sort: 'order' %}
-
-        <li class="folder collapsed">
-          <button class="folder-title" type="button"
-                  data-link="{{ f_link | relative_url }}">{{ f_title }}</button>
-          <ul class="folder-items">
-            {% for doc in items %}
-              {% assign d_path_parts = doc.path | split: "/" %}
-              {% assign d_filename = d_path_parts | last %}
-              {% unless d_filename == "index.md" or d_filename == "index.html" %}
+    <!-- Dynamic navigation -->
+    <nav>
+        <ul>
+            {% for item in site.nav %}
                 <li>
-                  <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
+                    <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
                 </li>
-              {% endunless %}
             {% endfor %}
-          </ul>
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
-
-
+        </ul>
+    </nav>
 
     <!-- Footer with social icons -->
     <div class="panel-footer">
