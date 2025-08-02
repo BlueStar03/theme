@@ -4,7 +4,7 @@
   {% include style.html %}
   {% include head.html %}
 </head>
-<body theme="dark">
+<body data-theme="dark">
 
   {% include header.html %}
   {% include sidebar.html %}
@@ -13,6 +13,13 @@
   </main>
   {% include rightpanel.html %}
   {% include scripts.html %}
+<div id="lightbox" class="lightbox hidden">
+  <span class="lightbox-close">&times;</span>
+  <div class="lightbox-content">
+    <img class="lightbox-img" src="" alt="">
+    <div class="lightbox-caption"></div>
+  </div>
+</div>
 
 </body>
 </html>

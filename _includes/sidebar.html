@@ -1,0 +1,57 @@
+<aside class="sidebar collapsed" id="sidebar">
+    <div class="panel-spacer site-title-spacer">
+  <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+</div>
+
+    <!-- Dynamic navigation -->
+     <!--
+    
+    <nav>
+        <ul>
+            {% for item in site.nav %}
+                <li>
+                    <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </nav> -->
+
+<nav>
+  <ul>
+    {% assign sorted_docs = site.docs | sort: "path" %}
+    {% for doc in sorted_docs %}
+      <li>
+        <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+
+<span>
+  <ul>
+    {% assign pages_list = site.pages | sort: "url" %}
+    {% for p in pages_list %}
+      {% if p.title and p.url != '/' %}
+        <li>
+          <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</span>
+
+
+
+    <!-- Footer with social icons -->
+    <div class="panel-footer">
+        {% if site.social %}
+  {% for item in site.social %}
+    <a href="{{ item.url }}" target="_blank" title="{{ item.title }}">
+      <i class="{{ item.icon }}"></i>
+    </a>
+  {% endfor %}
+  {% endif %}
+  <p>Version 1.0<br>&copy; {{ site.time | date: "%Y" }} {{ site.title }}</p>
+</div>
+
+</aside>
