@@ -17,15 +17,45 @@
     </nav> -->
 
 <nav>
+  {% assign docs_sorted = site.docs | sort: "path" %}
+
+  {% comment %}
+    Group documents by the first-level folder after _docs/
+    Example: _docs/features/overview.md → group "features"
+  {% endcomment %}
+
+  {% assign grouped = docs_sorted | group_by_exp:"doc", "doc.path | split:'/' | slice:1,1" %}
+
   <ul>
-    {% assign sorted_docs = site.docs | sort: "path" %}
-    {% for doc in sorted_docs %}
-      <li>
-        <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
-      </li>
+    {% for group in grouped %}
+      {% assign folder = group.name %}
+      {% assign items = group.items | sort: 'order' %}
+
+      {% if folder == '_docs' %}
+        {%- comment -%} Root-level docs (files directly under _docs/) {%- endcomment -%}
+        {% for doc in items %}
+          <li>
+            <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="folder">
+          <span class="folder-title">{{ folder | capitalize }}</span>
+          <ul>
+            {% for doc in items %}
+              <li>
+                <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
 </nav>
+
+
+<hr>
 
 <span>
   <ul>
