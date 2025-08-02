@@ -18,35 +18,54 @@
 
 <nav>
   {% assign docs_sorted = site.docs | sort: "path" %}
-  {% assign grouped = docs_sorted | group_by_exp:"doc", "doc.path | split:'/' | slice:1,1" %}
+
+  {%- comment -%}
+  Custom grouping:
+  - If path has 2 segments (["_docs", "file.md"]), it's a root file.
+  - If path has 3+ segments (["_docs", "folder", "file.md"]), group by segment 2.
+  {%- endcomment -%}
 
   <ul class="sidebar-nav">
-    {% for group in grouped %}
-      {% assign folder = group.name %}
-      {% assign items = group.items | sort: 'order' %}
+    {%- assign root_docs = "" | split: "" -%}
+    {%- assign folders = "" | split: "" -%}
 
-      {% if folder == '_docs' %}
-        {%- comment -%} Root-level docs (directly in _docs/) {%- endcomment -%}
-        {% for doc in items %}
-          <li>
-            <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
-          </li>
-        {% endfor %}
+    {% for doc in docs_sorted %}
+      {% assign parts = doc.path | split:'/' %}
+      {% if parts.size > 2 %}
+        {%- assign folder = parts[1] -%}
+        {%- assign folders = folders | push: folder -%}
       {% else %}
-        <li class="folder collapsed">
-          <button class="folder-title" type="button">{{ folder | capitalize }}</button>
-          <ul class="folder-items">
-            {% for doc in items %}
-              <li>
-                <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
-              </li>
-            {% endfor %}
-          </ul>
-        </li>
+        {%- assign root_docs = root_docs | push: doc -%}
       {% endif %}
+    {% endfor %}
+
+    {%- assign folders = folders | uniq | sort -%}
+
+    {# Root-level files #}
+    {% assign root_sorted = root_docs | sort: "order" %}
+    {% for doc in root_sorted %}
+      <li>
+        <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
+      </li>
+    {% endfor %}
+
+    {# Folders #}
+    {% for folder in folders %}
+      <li class="folder collapsed">
+        <button class="folder-title" type="button">{{ folder | capitalize }}</button>
+        <ul class="folder-items">
+          {% assign folder_docs = site.docs | where_exp: "d", "d.path contains '/" | append: folder | append: "/'" | sort: 'order' %}
+          {% for doc in folder_docs %}
+            <li>
+              <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
     {% endfor %}
   </ul>
 </nav>
+
 
 
 
