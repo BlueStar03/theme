@@ -18,6 +18,12 @@ kramdown:
   auto_ids: true
   toc_levels: 2..3   # H2 and H3
 
+defaults:
+  - scope:
+      path: ""          # Empty path means "all files"
+    values:
+      layout: "default"
+
 
 # Dynamic sidebar navigation
 nav:
