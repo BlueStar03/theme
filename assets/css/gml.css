@@ -83,3 +83,9 @@ pre:has(.language-gml) {
 .language-gml .hljs-operator      { color: var(--gml-operator); font-weight: bold; }
 .language-gml .hljs-objectvar     { color: var(--gml-objectvar); }
 .language-gml .hljs-macro         { color: var(--gml-macro); }
+
+.gm4html5_div_class.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
