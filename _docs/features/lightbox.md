@@ -1,8 +1,8 @@
 ---
-title: Features Overview
-order: 1
+title: Lightbox
+order: 3
 ---
 
-# Features Overview
+# Lightbox
 
-This section gives a broad overview of the features.
+Information about the lightbox gallery system.

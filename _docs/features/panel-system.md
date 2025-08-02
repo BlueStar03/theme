@@ -1,8 +1,8 @@
 ---
-title: Features Overview
-order: 1
+title: Panel System
+order: 2
 ---
 
-# Features Overview
+# Panel System
 
-This section gives a broad overview of the features.
+Details about the left and right panels.
