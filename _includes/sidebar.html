@@ -18,30 +18,24 @@
 
 <nav>
   {% assign docs_sorted = site.docs | sort: "path" %}
-
-  {% comment %}
-    Group documents by the first-level folder after _docs/
-    Example: _docs/features/overview.md → group "features"
-  {% endcomment %}
-
   {% assign grouped = docs_sorted | group_by_exp:"doc", "doc.path | split:'/' | slice:1,1" %}
 
-  <ul>
+  <ul class="sidebar-nav">
     {% for group in grouped %}
       {% assign folder = group.name %}
       {% assign items = group.items | sort: 'order' %}
 
       {% if folder == '_docs' %}
-        {%- comment -%} Root-level docs (files directly under _docs/) {%- endcomment -%}
+        {%- comment -%} Root-level docs (directly in _docs/) {%- endcomment -%}
         {% for doc in items %}
           <li>
             <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
           </li>
         {% endfor %}
       {% else %}
-        <li class="folder">
-          <span class="folder-title">{{ folder | capitalize }}</span>
-          <ul>
+        <li class="folder collapsed">
+          <button class="folder-title" type="button">{{ folder | capitalize }}</button>
+          <ul class="folder-items">
             {% for doc in items %}
               <li>
                 <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
@@ -54,21 +48,6 @@
   </ul>
 </nav>
 
-
-<hr>
-
-<span>
-  <ul>
-    {% assign pages_list = site.pages | sort: "url" %}
-    {% for p in pages_list %}
-      {% if p.title and p.url != '/' %}
-        <li>
-          <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</span>
 
 
 
