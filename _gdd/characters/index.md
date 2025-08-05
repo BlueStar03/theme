@@ -1,31 +1,19 @@
 ---
 title: characters
-order: 1
+order: 0
 ---
 
 
 # Characters
 
-This section will contain detailed descriptions of the main characters in the game.
 
-## Main Protagonist
 
-- **Name:** _TBD_
-- **Role:** The hero of the story.
-- **Description:** Brief overview of appearance, personality, and background.
+## Table of Contents
 
-## Main Antagonist
+- [maria.md](maria.md)
+- [sara.md](sara.md)
+- [index.md](index.md)
+- [index.md](index.md)
+- [index.md](index.md)
 
-- **Name:** _TBD_
-- **Role:** The primary adversary.
-- **Description:** Brief overview of appearance, personality, and motivation.
-
-## Supporting Characters
-
-- **Name:** _TBD_
-- **Role:** Ally or side character.
-- **Description:** Brief overview of appearance, personality, and relationship to the protagonist.
-
----
-
-*More character profiles will be added as development progresses.*
+> _This is a list of files currently in the `/c:/Users/zbule/OneDrive/BlueStar03/theme/_gdd/` folder. Update this list as files are added or removed._
