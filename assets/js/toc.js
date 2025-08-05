@@ -6,7 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector('meta[name="toc-include-h1"]')
     ?.getAttribute("content") === "true";
 
-  const headings = document.querySelectorAll("h2, h3" + (includeH1 ? ", h1" : ""));
+  const mainContent = document.getElementById("mainContent");
+  if (!mainContent) return;
+
+  const selector = includeH1 ? "h1, h2, h3" : "h2, h3";
+  const headings = mainContent.querySelectorAll(selector);
 
   headings.forEach(heading => {
     const id = heading.id || heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
