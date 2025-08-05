@@ -3,13 +3,17 @@
     <ul class="nav-list">
       {% for item in site.nav %}
         {% case item.type %}
-
+        
           {% when "page" %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-
+          
           {% when "collection" %}
             <li class="collapsible-section">
-              <button class="collapsible-toggle" aria-expanded="false">
+              <button
+                class="collapsible-toggle"
+                aria-expanded="false"
+                data-key="collection-{{ item.collection }}"
+              >
                 {{ item.title }}
               </button>
               <ul class="collapsible-content">
@@ -19,10 +23,14 @@
                 {% endfor %}
               </ul>
             </li>
-
+        
           {% when "blog" %}
             <li class="collapsible-section">
-              <button class="collapsible-toggle" aria-expanded="false">
+              <button
+                class="collapsible-toggle"
+                aria-expanded="false"
+                data-key="blog-posts"
+              >
                 {{ item.title }}
               </button>
               <ul class="collapsible-content">
@@ -32,10 +40,10 @@
                 {% endfor %}
               </ul>
             </li>
-
+        
           {% else %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-
+        
         {% endcase %}
       {% endfor %}
     </ul>
