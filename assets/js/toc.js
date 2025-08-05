@@ -12,18 +12,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const selector = includeH1 ? "h1, h2, h3" : "h2, h3";
   const headings = mainContent.querySelectorAll(selector);
 
+  let currentH2Li = null;
+
   headings.forEach(heading => {
     const id = heading.id || heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
     heading.id = id;
 
-    const li = document.createElement("li");
-    li.className = heading.tagName.toLowerCase();
-    
     const a = document.createElement("a");
     a.href = `#${id}`;
     a.textContent = heading.textContent;
 
+    const li = document.createElement("li");
+    li.className = heading.tagName.toLowerCase();
     li.appendChild(a);
-    tocList.appendChild(li);
+
+    if (heading.tagName.toLowerCase() === "h2" || heading.tagName.toLowerCase() === "h1") {
+      tocList.appendChild(li);
+      currentH2Li = li;
+    } else if (heading.tagName.toLowerCase() === "h3" && currentH2Li) {
+      let subList = currentH2Li.querySelector("ul");
+      if (!subList) {
+        subList = document.createElement("ul");
+        currentH2Li.appendChild(subList);
+      }
+      subList.appendChild(li);
+    } else {
+      tocList.appendChild(li); // fallback
+    }
   });
 });
