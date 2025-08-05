@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Fixed Sidebar Prototype</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <button id="toggle-left" aria-label="Toggle left panel">☰</button>
+    <h1>My Jekyll Site</h1>
+    <button id="toggle-right" aria-label="Toggle right panel">📑</button>
+  </header>
+
+ <div class="left-panel" id="leftPanel">
+  <div class="left-scroll">
+    <nav>
+      <ol>
+        <li>Home</li>
+        <li>Docs</li>
+        <li>Blog</li>
+        <li>About</li>
+        <li>Projects
+          <ol>
+            <li>Project Alpha</li>
+            <li>Project Beta
+              <ul>
+                <li>Beta Docs</li>
+                <li>Beta Roadmap</li>
+              </ul>
+            </li>
+            <li>Project Gamma</li>
+          </ol>
+        </li>
+        <li>Resources
+          <ul>
+            <li>Tutorials</li>
+            <li>APIs
+              <ul>
+                <li>REST API</li>
+                <li>GraphQL API</li>
+              </ul>
+            </li>
+            <li>Cheat Sheets</li>
+          </ul>
+        </li>
+        <li>Community</li>
+        <li>Events
+          <ul>
+            <li>Workshops</li>
+            <li>Webinars</li>
+          </ul>
+        </li>
+        <li>Support</li>
+        <li>FAQ</li>
+        <li>Contact</li>
+        <li>Changelog</li>
+        <li>Releases</li>
+        <li>Partners</li>
+        <li>Careers</li>
+        <li>Press</li>
+        <li>Legal
+          <ul>
+            <li>Privacy Policy</li>
+            <li>Terms of Service</li>
+          </ul>
+        </li>
+        <li>Settings</li>
+        <li>Account</li>
+        <li>Logout</li>
+</ol>
+    </nav>
+  </div>
+  <footer>© 2025</footer>
+</div>
+
+  <main id="mainContent">
+    <h2>Content Area</h2>
+    <p>Lorem ipsum dolor sit amet...</p>
+    <p>More content...</p>
+    <p>More content...</p>
+    <!-- Add more paragraphs or test content here -->
+  </main>
+
+  <div class="right-panel" id="rightPanel">
+    <aside>
+      <ol>
+        <li>Introduction</li>
+        <li>Getting Started
+          <ol>
+            <li>Installation</li>
+            <li>Quick Start</li>
+          </ol>
+        </li>
+        <li>Features
+          <ol>
+            <li>Core Features</li>
+            <li>Advanced Features</li>
+          </ol>
+        </li>
+        <li>Configuration
+          <ol>
+            <li>Basic Settings</li>
+            <li>Customization</li>
+          </ol>
+        </li>
+        <li>Usage
+          <ol>
+            <li>CLI Usage</li>
+            <li>GUI Usage</li>
+          </ol>
+        </li>
+        <li>Examples
+          <ol>
+            <li>Simple Example</li>
+            <li>Complex Example</li>
+          </ol>
+        </li>
+        <li>Troubleshooting
+          <ol>
+            <li>Common Issues</li>
+            <li>FAQ</li>
+          </ol>
+        </li>
+        <li>Contributing
+          <ol>
+            <li>How to Contribute</li>
+            <li>Code of Conduct</li>
+          </ol>
+        </li>
+        <li>Changelog</li>
+        <li>License</li>
+      </ol>
+    </aside>
+  </div>
+
+<script>
+  const leftPanel = document.getElementById('leftPanel');
+  const rightPanel = document.getElementById('rightPanel');
+  const body = document.body;
+
+  document.getElementById('toggle-left').addEventListener('click', () => {
+    const closed = leftPanel.classList.toggle('closed');
+    body.classList.toggle('hide-left', closed);
+  });
+
+  document.getElementById('toggle-right').addEventListener('click', () => {
+    const closed = rightPanel.classList.toggle('closed');
+    body.classList.toggle('hide-right', closed);
+  });
+
+  function handleResponsivePanels() {
+    if (window.innerWidth <= 768) {
+      leftPanel.classList.add('closed');
+      rightPanel.classList.add('closed');
+      body.classList.add('hide-left');
+      body.classList.add('hide-right');
+    } else {
+      leftPanel.classList.remove('closed');
+      rightPanel.classList.remove('closed');
+      body.classList.remove('hide-left');
+      body.classList.remove('hide-right');
+    }
+  }
+
+  window.addEventListener('load', handleResponsivePanels);
+  window.addEventListener('resize', handleResponsivePanels);
+</script>
+
+
+</body>
+</html>
