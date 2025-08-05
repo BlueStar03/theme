@@ -3,49 +3,53 @@
     <ul class="nav-list">
       {% for item in site.nav %}
         {% case item.type %}
-        
+          
           {% when "page" %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
           
           {% when "collection" %}
+            {% assign sorted = site[item.collection] | sort: "order" %}
+            {% assign index_doc = sorted[0] %}
+            {% assign rest_docs = sorted | slice: 1, sorted.size %}
             <li class="collapsible-section">
               <button
                 class="collapsible-toggle"
                 aria-expanded="false"
                 data-key="collection-{{ item.collection }}"
-                data-index-url="{% assign sorted = site[item.collection] | sort: 'order' %}{{ sorted[0].url | relative_url }}"
+                data-index-url="{{ index_doc.url | relative_url }}"
               >
                 {{ item.title }}
               </button>
-
               <ul class="collapsible-content">
-                {% assign collection_items = site[item.collection] | sort: "order" %}
-                {% for doc in collection_items %}
+                {% for doc in rest_docs %}
                   <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
                 {% endfor %}
               </ul>
             </li>
-        
+          
           {% when "blog" %}
+            {% assign sorted_posts = site.posts | sort: "order" %}
+            {% assign index_post = sorted_posts[0] %}
+            {% assign rest_posts = sorted_posts | slice: 1, sorted_posts.size %}
             <li class="collapsible-section">
               <button
                 class="collapsible-toggle"
                 aria-expanded="false"
                 data-key="blog-posts"
+                data-index-url="{{ index_post.url | relative_url }}"
               >
                 {{ item.title }}
               </button>
               <ul class="collapsible-content">
-                {% assign blog_posts = site.posts | sort: "order" %}
-                {% for post in blog_posts %}
+                {% for post in rest_posts %}
                   <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
                 {% endfor %}
               </ul>
             </li>
-        
+          
           {% else %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-        
+          
         {% endcase %}
       {% endfor %}
     </ul>

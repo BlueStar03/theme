@@ -1,5 +1,5 @@
 ---
-title: Core Concepts
+title: characters
 order: 1
 ---
 
