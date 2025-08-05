@@ -1,35 +1,25 @@
-// assets/js/toc.js
+document.addEventListener("DOMContentLoaded", function () {
+  const tocList = document.getElementById("toc-list");
+  if (!tocList) return;
 
-document.addEventListener('DOMContentLoaded', () => {
-  const main = document.querySelector('main');
-  const tocList = document.getElementById('toc-list');
+  const includeH1 = document
+    .querySelector('meta[name="toc-include-h1"]')
+    ?.getAttribute("content") === "true";
 
-  if (!main || !tocList) return;
-
-  const headings = main.querySelectorAll('h2, h3');
+  const headings = document.querySelectorAll("h2, h3" + (includeH1 ? ", h1" : ""));
 
   headings.forEach(heading => {
-    // Ensure the heading has an ID
-    if (!heading.id) {
-      heading.id = heading.textContent
-        .toLowerCase()
-        .trim()
-        .replace(/[^\w]+/g, '-')
-        .replace(/^-+|-+$/g, '');
-    }
+    const id = heading.id || heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
+    heading.id = id;
 
-    const link = document.createElement('a');
-    link.href = `#${heading.id}`;
-    link.textContent = heading.textContent;
+    const li = document.createElement("li");
+    li.className = heading.tagName.toLowerCase();
+    
+    const a = document.createElement("a");
+    a.href = `#${id}`;
+    a.textContent = heading.textContent;
 
-    const li = document.createElement('li');
-    li.appendChild(link);
-
-    // Add a class based on heading level
-    if (heading.tagName === 'H3') {
-      li.classList.add('sub');
-    }
-
+    li.appendChild(a);
     tocList.appendChild(li);
   });
 });

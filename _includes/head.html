@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
 
 <!-- Optional: favicon, meta description, etc. -->
+<meta name="toc-include-h1" content="{{ site.toc-include-h1 | default: false }}">
+
 {%- if page.description or site.description -%}
 <meta name="description" content="{{ page.description | default: site.description }}">
 {%- endif -%}
