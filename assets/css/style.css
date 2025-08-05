@@ -117,3 +117,23 @@ nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
 }
+
+/* TOC Styling */
+.toc {
+  font-size: 0.9em;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin: 0.25em 0;
+}
+
+.toc li.sub {
+  margin-left: 1em;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
