@@ -12,6 +12,35 @@ toc-include-h1: true
 toc_icon: "📑"           # Default Unicode character
 # toc_icon: "fas fa-list"  # Or use a Font Awesome icon class
 
+collections:
+  gdd:
+    output: true
+
+
+nav:
+  - title: .🏠 Home
+    url: /
+    type: page
+
+  - title: 📜 GDD
+    url: /gdd
+    type: collection
+    collection: gdd
+
+  - title: 📝 Devlog
+    url: /posts
+    type: blog
+
+  - title: 🛠️ About
+    url: /about
+    type: page
+
+  - title: 🗺️ Roadmap
+    url: /roadmap
+    type: page
+
+
+
 
 
 markdown: kramdown
@@ -32,16 +61,8 @@ defaults:
 #  - jekyll-seo-tag
 
 
-# Dynamic sidebar navigation
-nav:
-  - title: .🏠 Home
-    url: /
-  - title: 📜 Readme
-    url: /README.html
-  - title: 🛠️ About
-    url: /about
-  - title: 🗺️ Roadmap
-    url: /roadmap
+
+
 
 
 # Social links appear in the left sidebar footer.
