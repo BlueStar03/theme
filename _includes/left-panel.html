@@ -1,6 +1,6 @@
 <div class="left-panel" id="leftPanel">
   <nav>
-    <ul>
+    <ul class="nav-list">
       {% for item in site.nav %}
         {% case item.type %}
           
@@ -8,11 +8,17 @@
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
           
           {% when "collection" %}
-            <li><strong>{{ item.title }}</strong></li>
-            {% assign collection_items = site[item.collection] %}
-            {% for doc in collection_items %}
-              <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
-            {% endfor %}
+            <li class="collapsible-section">
+              <button class="collapsible-toggle" aria-expanded="false">
+                {{ item.title }}
+              </button>
+              <ul class="collapsible-content">
+                {% assign collection_items = site[item.collection] %}
+                {% for doc in collection_items %}
+                  <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
 
           {% when "blog" %}
             <li><strong>{{ item.title }}</strong></li>

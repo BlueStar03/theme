@@ -190,3 +190,26 @@ aside li > ol, aside li > ul {
   margin-left: 1em;
   font-size: 0.95em;
 }
+
+
+
+/* Collapsible Collection Styles */
+.collapsible-section > .collapsible-toggle {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.collapsible-content {
+  display: none;
+  padding-left: 1em;
+  list-style: disc;
+}
+
+.collapsible-content.open {
+  display: block;
+}
