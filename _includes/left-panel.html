@@ -3,17 +3,17 @@
     <ul class="nav-list">
       {% for item in site.nav %}
         {% case item.type %}
-          
+
           {% when "page" %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-          
+
           {% when "collection" %}
             <li class="collapsible-section">
               <button class="collapsible-toggle" aria-expanded="false">
                 {{ item.title }}
               </button>
               <ul class="collapsible-content">
-                {% assign collection_items = site[item.collection] %}
+                {% assign collection_items = site[item.collection] | sort: "order" %}
                 {% for doc in collection_items %}
                   <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
                 {% endfor %}
@@ -21,10 +21,17 @@
             </li>
 
           {% when "blog" %}
-            <li><strong>{{ item.title }}</strong></li>
-            {% for post in site.posts %}
-              <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-            {% endfor %}
+            <li class="collapsible-section">
+              <button class="collapsible-toggle" aria-expanded="false">
+                {{ item.title }}
+              </button>
+              <ul class="collapsible-content">
+                {% assign blog_posts = site.posts | sort: "order" %}
+                {% for post in blog_posts %}
+                  <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </li>
 
           {% else %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>

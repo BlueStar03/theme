@@ -1,6 +1,8 @@
 ---
-title: characters
+title: Core Concepts
+order: 1
 ---
+
 
 # Characters
 

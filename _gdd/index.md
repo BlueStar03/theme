@@ -1,6 +1,8 @@
 ---
 title: index
+order: 0
 ---
+
 ## Table of Contents
 
 - [index.md](index.md)

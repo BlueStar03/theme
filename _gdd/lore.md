@@ -1,6 +1,8 @@
 ---
 title: lore
+order: 2
 ---
+
 
 # Lore Placeholder
 
