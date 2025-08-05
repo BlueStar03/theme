@@ -1,24 +1,40 @@
-// assets/js/nav-toggle.js
 document.addEventListener("DOMContentLoaded", () => {
+  const currentURL = window.location.pathname;
+
   document.querySelectorAll(".collapsible-toggle").forEach(button => {
     const key = button.dataset.key;
     const content = button.nextElementSibling;
-    const stored = localStorage.getItem(`nav-expanded-${key}`);
+    const indexURL = button.dataset.indexUrl;
 
-    // Restore saved state
-    if (stored === "true") {
+    const isExpanded = localStorage.getItem(`nav-expanded-${key}`) === "true";
+
+    // Initial state
+    if (isExpanded) {
       button.setAttribute("aria-expanded", "true");
       content.classList.add("open");
     }
 
-    // Toggle on click and save
-    button.addEventListener("click", () => {
-      const isExpanded = button.getAttribute("aria-expanded") === "true";
-      const newState = !isExpanded;
+    button.addEventListener("click", (e) => {
+      const currentlyExpanded = button.getAttribute("aria-expanded") === "true";
+      const isOnIndex = currentURL === indexURL;
 
-      button.setAttribute("aria-expanded", String(newState));
-      content.classList.toggle("open", newState);
-      localStorage.setItem(`nav-expanded-${key}`, String(newState));
+      if (!currentlyExpanded) {
+        // Expand and navigate to index
+        button.setAttribute("aria-expanded", "true");
+        content.classList.add("open");
+        localStorage.setItem(`nav-expanded-${key}`, "true");
+        window.location.href = indexURL;
+      } else {
+        if (!isOnIndex) {
+          // Stay expanded and go to index
+          window.location.href = indexURL;
+        } else {
+          // Collapse
+          button.setAttribute("aria-expanded", "false");
+          content.classList.remove("open");
+          localStorage.setItem(`nav-expanded-${key}`, "false");
+        }
+      }
     });
   });
 });

@@ -13,9 +13,11 @@
                 class="collapsible-toggle"
                 aria-expanded="false"
                 data-key="collection-{{ item.collection }}"
+                data-index-url="{% assign sorted = site[item.collection] | sort: 'order' %}{{ sorted[0].url | relative_url }}"
               >
                 {{ item.title }}
               </button>
+
               <ul class="collapsible-content">
                 {% assign collection_items = site[item.collection] | sort: "order" %}
                 {% for doc in collection_items %}
