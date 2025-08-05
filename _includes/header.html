@@ -1,6 +1,11 @@
-<!-- _includes/header.html -->
 <header>
   <button id="toggle-left" aria-label="Toggle left panel">☰</button>
-  <h1>{{ site.title }}</h1>
-  <button id="toggle-right" aria-label="Toggle right panel">📑</button>
+  <h1>{{ page.title | default: site.title }}</h1>
+  <button id="toggle-right" aria-label="Toggle TOC">
+    {% if site.toc_icon contains "fa-" %}
+      <i class="{{ site.toc_icon }}"></i>
+    {% else %}
+      {{ site.toc_icon | default: "📑" }}
+    {% endif %}
+  </button>
 </header>
