@@ -1,15 +1,55 @@
 /* assets/css/style.css */
-/* Basic Reset */
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
 *, *::before, *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-html, body {
-  height: 100%;
-  font-family: sans-serif;
-  overflow: hidden;
+* {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+/* General Styles */
+a{
+  text-decoration: none;
 }
 
 /* Header */
@@ -122,6 +162,9 @@ aside li > ol, aside li > ul {
 .toc {
   font-size: 0.9em;
 }
+.toc a{
+  text-decoration: none;
+}
 
 .toc ul {
   list-style: none;
@@ -136,4 +179,14 @@ aside li > ol, aside li > ul {
   margin-left: 1em;
   font-size: 0.9em;
   opacity: 0.85;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li.h3 {
+  margin-left: 1em;
+  font-size: 0.95em;
 }
