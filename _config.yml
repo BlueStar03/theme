@@ -12,7 +12,7 @@ panel_width: 22em
 accent_color: blue
 content_max: 68em  
 
-toc-include-h1: false
+toc-include-h1: true
 
 
 markdown: kramdown
