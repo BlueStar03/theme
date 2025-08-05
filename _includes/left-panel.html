@@ -8,9 +8,10 @@
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
           
           {% when "collection" %}
-            {% assign sorted = site[item.collection] | sort: "order" %}
-            {% assign index_doc = sorted[0] %}
-            {% assign rest_docs = sorted | slice: 1, sorted.size %}
+            {%- assign sorted = site[item.collection] | sort: "order" -%}
+            {%- assign index_doc = sorted[0] -%}
+            {%- assign rest_docs = sorted | slice: 1, sorted.size -%}
+
             <li class="collapsible-section">
               <button
                 class="collapsible-toggle"
@@ -21,16 +22,28 @@
                 {{ item.title }}
               </button>
               <ul class="collapsible-content">
-                {% for doc in rest_docs %}
-                  <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
-                {% endfor %}
+                {%- assign grouped = rest_docs | group_by: "dir" -%}
+                {%- for group in grouped -%}
+                  {%- assign folder = group.name | replace: "/", "" -%}
+                  <li class="folder-group">
+                    {%- if folder != "" -%}
+                      <strong>{{ folder }}</strong>
+                    {%- endif -%}
+                    <ul>
+                      {%- for doc in group.items -%}
+                        <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
+                      {%- endfor -%}
+                    </ul>
+                  </li>
+                {%- endfor -%}
               </ul>
             </li>
-          
+
           {% when "blog" %}
-            {% assign sorted_posts = site.posts | sort: "order" %}
-            {% assign index_post = sorted_posts[0] %}
-            {% assign rest_posts = sorted_posts | slice: 1, sorted_posts.size %}
+            {%- assign sorted_posts = site.posts | sort: "order" -%}
+            {%- assign index_post   = sorted_posts[0] -%}
+            {%- assign rest_posts    = sorted_posts | slice: 1, sorted_posts.size -%}
+
             <li class="collapsible-section">
               <button
                 class="collapsible-toggle"
@@ -41,15 +54,19 @@
                 {{ item.title }}
               </button>
               <ul class="collapsible-content">
-                {% for post in rest_posts %}
-                  <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
-                {% endfor %}
+                <li class="folder-group">
+                  <ul>
+                    {%- for post in rest_posts -%}
+                      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+                    {%- endfor -%}
+                  </ul>
+                </li>
               </ul>
             </li>
-          
+
           {% else %}
             <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
-          
+
         {% endcase %}
       {% endfor %}
     </ul>
