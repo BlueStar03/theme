@@ -1,21 +1,6 @@
+<!-- _includes/header.html -->
 <header>
-    <!-- Topbar with page title -->
-    <div class="topbar">
-        <h2>{{ page.title | default: site.title }}</h2>
-    </div>
-
-    <!-- Left Panel Toggle -->
-    {% if site.logo %}
-  <!-- Toggle button with logo -->
-  <button id="toggleSidebar" class="toggle-btn" aria-label="Toggle left panel">
-    <img src="{{ site.logo | relative_url }}" alt="Toggle menu" class="toggle-logo">
-  </button>
-{% else %}
-  <!-- Fallback icon toggle -->
-  <button id="toggleSidebar" class="toggle-btn" aria-label="Toggle left panel">☰</button>
-{% endif %}
-
-
-    <!-- Right Panel Toggle -->
-    <button class="toggle-btn right" id="toggleRightPanel">📑</button>
+  <button id="toggle-left" aria-label="Toggle left panel">☰</button>
+  <h1>{{ site.title }}</h1>
+  <button id="toggle-right" aria-label="Toggle right panel">📑</button>
 </header>

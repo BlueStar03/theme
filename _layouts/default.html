@@ -1,86 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: 'en' }}">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page.title | default: site.title }}</title>
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+  {% include head.html %}
 </head>
 <body>
-  <header>
-    <button id="toggle-left" aria-label="Toggle left panel">☰</button>
-    <h1>{{ site.title }}</h1>
-    <button id="toggle-right" aria-label="Toggle right panel">📑</button>
-  </header>
-
-  <div class="left-panel" id="leftPanel">
-    <div class="left-scroll">
-      <nav>
-        <!-- static nav; replace with Liquid loops if you have dynamic nav -->
-        <ol>
-          <li><a href="{{ '/' | relative_url }}">Home</a></li>
-          <li><a href="{{ '/docs/' | relative_url }}">Docs</a></li>
-          <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-          <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-          <!-- …add more items as needed… -->
-        </ol>
-      </nav>
-    </div>
-    <footer>© {{ site.time | date: '%Y' }} {{ site.title }}</footer>
-  </div>
-
-  <main id="mainContent">
-    {{ content }}
-  </main>
-
-  <div class="right-panel" id="rightPanel">
-    <aside>
-      <!-- static aside; swap for dynamic if desired -->
-      <ol>
-        <li><a href="#introduction">Introduction</a></li>
-        <li>
-          Getting Started
-          <ol>
-            <li><a href="#installation">Installation</a></li>
-            <li><a href="#quick-start">Quick Start</a></li>
-          </ol>
-        </li>
-        <!-- …add more items… -->
-      </ol>
-    </aside>
-  </div>
-
-  <script>
-    const body       = document.body;
-    const leftPanel  = document.getElementById('leftPanel');
-    const rightPanel = document.getElementById('rightPanel');
-
-    // Toggle buttons
-    document.getElementById('toggle-left').addEventListener('click', () => {
-      const closed = leftPanel.classList.toggle('closed');
-      body.classList.toggle('hide-left', closed);
-    });
-    document.getElementById('toggle-right').addEventListener('click', () => {
-      const closed = rightPanel.classList.toggle('closed');
-      body.classList.toggle('hide-right', closed);
-    });
-
-    // Auto-collapse on mobile
-    function handleResponsivePanels() {
-      if (window.innerWidth <= 768) {
-        leftPanel.classList.add('closed');
-        rightPanel.classList.add('closed');
-        body.classList.add('hide-left');
-        body.classList.add('hide-right');
-      } else {
-        leftPanel.classList.remove('closed');
-        rightPanel.classList.remove('closed');
-        body.classList.remove('hide-left');
-        body.classList.remove('hide-right');
-      }
-    }
-    window.addEventListener('load',   handleResponsivePanels);
-    window.addEventListener('resize', handleResponsivePanels);
-  </script>
+  {% include header.html %}
+  {% include left-panel.html %}
+  <main id="mainContent">{{ content }}</main>
+  {% include right-panel.html %}
+  {% include scripts.html %}
 </body>
 </html>
