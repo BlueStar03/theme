@@ -69,10 +69,21 @@ defaults:
 # - url: the full link
 # - icon: Font Awesome class (e.g. 'fab fa-twitter')
 
+# _config.yml
+
 social:
   - title: DeviantArt
     url: https://deviantart.com/zbule
     icon: fab fa-deviantart
+
+  - title: Twitter
+    url: https://twitter.com/yourhandle
+    icon: fab fa-twitter
+
+  - title: GitHub
+    url: https://github.com/yourhandle
+    icon: fab fa-github
+
   # - title: Instagram
   #   url: https://instagram.com/zbule
   #   icon: fab fa-instagram
