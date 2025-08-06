@@ -1,33 +1,24 @@
-<!-- _includes/left-panel-collection.html -->
-{% assign sorted    = site[include.item.collection] | sort: "order" %}
-{% assign index_doc = sorted[0] %}
-{% assign rest_docs = sorted | slice: 1, sorted.size %}
+{%- assign docs = site[include.item.collection] | sort: "order" -%}
+{%- assign index_doc = docs.first -%}
+{%- assign rest_docs = docs | slice: 1, docs.size -%}
 
 <li class="collapsible-section">
-  <a
-    href="{{ index_doc.url | relative_url }}"
-    class="collapsible-toggle"
-    aria-expanded="false"
-    data-key="collection-{{ include.item.collection }}"
-    data-index-url="{{ index_doc.url | relative_url }}"
-  >
+  <!-- Header link to the collection’s “index” document -->
+  <a href="{{ index_doc.url | relative_url }}"
+     class="collapsible-toggle"
+     aria-expanded="false"
+     data-key="collection-{{ include.item.collection }}"
+     data-index-url="{{ index_doc.url | relative_url }}">
     {{ include.item.title }}
   </a>
+
+  <!-- Hidden until toggled open -->
   <ul class="collapsible-content">
-    {% assign grouped = rest_docs | group_by: "dir" %}
-    {% for group in grouped %}
-      {% assign folder = group.name | replace: "/", "" %}
-      <li class="folder-group">
-        {% if folder != "" %}
-          <strong>{{ folder }}</strong>
-        {% endif %}
-        <ul>
-          {% for doc in group.items %}
-            <li>
-              <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
+    {% for doc in rest_docs %}
+      <li>
+        <a href="{{ doc.url | relative_url }}">
+          {{ doc.title }}
+        </a>
       </li>
     {% endfor %}
   </ul>

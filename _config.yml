@@ -19,23 +19,27 @@ collections:
     output: true
 
 
+# Define your sidebar order
 nav:
-  - title: .🏠 Home
+  - title: "Home"
     url: /
     type: page
-  - title: 📝 Devlog
-    url: /posts
-    type: blog
-  - title: 📚 Doc
-    url: /docs/
+
+  - title: "GDD"
+    type: collection
+    collection: gdd
+    # url is derived from the first document’s permalink
+
+  - title: "Docs"
     type: collection
     collection: docs
-  - title: 🛠️ About
-    url: /about
-    type: page
-    nav:
-  - title: 📝 Devlog
+
+  - title: "Blog"
     url: /posts/
+    type: blog
+
+  - title: "About"
+    url: /about/
     type: page
 
   
