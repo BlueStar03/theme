@@ -4,7 +4,9 @@
       <ul class="nav-list">
         {% for item in site.nav %}
           <li>
-            <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
+            <a href="{{ item.url | relative_url }}">
+              {{ item.title }}
+            </a>
           </li>
         {% endfor %}
       </ul>
