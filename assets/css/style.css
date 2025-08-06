@@ -213,3 +213,19 @@ aside li > ol, aside li > ul {
 .collapsible-content.open {
   display: block;
 }
+
+
+.sitemap ul {
+  list-style-type: none;
+  padding-left: 1em;
+}
+
+.sitemap li {
+  margin: 0.2em 0;
+}
+
+.sitemap .post-date {
+  color: #888;
+  font-size: 0.9em;
+  margin-left: 0.3em;
+}

@@ -4,62 +4,41 @@ title: Sitemap
 permalink: /sitemap/
 ---
 
-<h2>Sitemap</h2>
-
-<!-- 1. Standalone Pages -->
-<section>
-  <h3>Pages</h3>
+<nav class="sitemap">
   <ul>
-    {% assign standalone = site.pages 
-        | where_exp: "p", "p.collection == nil" 
-        | where_exp: "p", "p.url != '/sitemap/' and p.url != '/' and p.url contains '.' == false" %}
-    {% for page in standalone %}
-      <li><a href="{{ page.url | relative_url }}">{{ page.title | default: page.name }}</a></li>
-    {% endfor %}
-  </ul>
-</section>
+    {% assign pages = site.pages | where_exp: "p", "p.title and p.url != '/sitemap/'" | sort: "url" %}
+    {% assign collections = site.collections %}
+    {% assign posts = site.posts %}
 
-<!-- 2. Collections -->
-{% for coll in site.collections %}
-  {% assign cname = coll.first %}
-  {% if cname != "posts" and coll[1].docs.size > 0 %}
-    <section>
-      <h3>{{ cname | capitalize }}</h3>
+    <li><strong>Pages</strong>
       <ul>
-        {% assign docs = site[cname] | sort: "order" %}
-        {% assign grouped = docs | group_by: "dir" %}
-        {% for group in grouped %}
-          {% assign folder = group.name | remove: "_" | remove_first: cname %}
-          {% if folder != "" %}
-            <li>
-              <strong>{{ folder | split: "/" | last | replace: "-", " " | capitalize }}</strong>
-              <ul>
-                {% for doc in group.items %}
-                  {% if doc.basename != "index" %}
-                    <li><a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a></li>
-                  {% endif %}
-                {% endfor %}
-              </ul>
-            </li>
-          {% else %}
-            {% for doc in group.items %}
-              <li>
-                <a href="{{ doc.url | relative_url }}">{{ doc.title | default: doc.basename }}</a>
-              </li>
-            {% endfor %}
-          {% endif %}
+        {% for page in pages %}
+          <li><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
         {% endfor %}
       </ul>
-    </section>
-  {% endif %}
-{% endfor %}
+    </li>
 
-<!-- 3. Blog Posts -->
-<section>
-  <h3>Blog</h3>
-  <ul>
-    {% for post in site.posts %}
-      <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> <small>({{ post.date | date: "%Y-%m-%d" }})</small></li>
+    {% for collection in collections %}
+      {% assign items = collection.docs | sort: "order" %}
+      {% if collection.label != "posts" and items.size > 0 %}
+        <li><strong>{{ collection.label | capitalize }}</strong>
+          <ul>
+            {% for doc in items %}
+              <li><a href="{{ doc.url | relative_url }}">{{ doc.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endif %}
     {% endfor %}
+
+    {% if posts.size > 0 %}
+      <li><strong>Blog</strong>
+        <ul>
+          {% for post in posts %}
+            <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> <span class="post-date">({{ post.date | date: "%Y-%m-%d" }})</span></li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
   </ul>
-</section>
+</nav>

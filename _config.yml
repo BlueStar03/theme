@@ -41,10 +41,11 @@ nav:
   - title: 🛠️ About
     url: /about
     type: page
-
-  - title: 🗺️ Roadmap
-    url: /roadmap
+  - title: 📄 Sitemap
+    url: /sitemap/
     type: page
+  # …other nav items…
+
 
 
 
