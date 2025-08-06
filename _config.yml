@@ -1,26 +1,17 @@
-title: BlueStar Theme
-description: A demo site showcasing the BlueStar Jekyll theme.
+# Site settings
+title: BlueStar theme
 
+# Should the TOC include <h1>? (read by toc.js)
+toc-include-h1: false
 
-
-font_base: 16px
-panel_width: 22em
-accent_color: blue
-content_max: 68em  
-
-toc-include-h1: true
-toc_icon: "📑"           # Default Unicode character
-# toc_icon: "fas fa-list"  # Or use a Font Awesome icon class
-
+# Collections (if you have any; optional)
 collections:
   gdd:
     output: true
-  docs:
+  tutorials:
     output: true
 
-
-# Define your sidebar order
-
+# Simple nav menu — drives left-panel.html
 nav:
   - title: "Home"
     url: /
@@ -37,72 +28,16 @@ nav:
   - title: "About"
     url: /about/
 
-
-  
-
-
-
-
-
-
-markdown: kramdown
-kramdown:
-  auto_ids: true
-  toc_levels: 2..3   # H2 and H3
-
-defaults:
-  - scope:
-      path: ""          # Empty path means "all files"
-    values:
-      layout: "default"
-
-
-# Optional: add plugins if needed
-#plugins:
-#  - jekyll-feed
-#  - jekyll-seo-tag
-
-
-
-
-
-
-# Social links appear in the left sidebar footer.
-# Each item needs:
-# - title: for the tooltip
-# - url: the full link
-# - icon: Font Awesome class (e.g. 'fab fa-twitter')
-
-# _config.yml
-
+# Social links — used in footer.html
 social:
   - title: DeviantArt
     url: https://deviantart.com/zbule
-    icon: fab fa-deviantart
+    icon: "🖼️"
+
   - title: Twitter
     url: https://twitter.com/yourhandle
-    icon: fab fa-twitter
+    icon: "🐦"
+
   - title: GitHub
     url: https://github.com/yourhandle
-    icon: fab fa-github
-  - title: Instagram
-    url: https://instagram.com/zbule
-    icon: fab fa-instagram
-  - title: BlueSky
-    url: https://bsky.app/profile/zbule.xyz
-    icon: fa-brands fa-bluesky
-  - title: Twitter
-    url: https://twitter.com/zBuLe
-    icon: fab fa-twitter
-  - title: itch.io
-    url: https://zbule.itch.io
-    icon: fa-brands fa-itch-io
-  - title: Twitch
-    url: https://twitch.tv/zbule
-    icon: fab fa-twitch
-  - title: YouTube
-    url: https://youtube.com/@bluestar03
-    icon: fab fa-youtube
-  - title: Ko-fi
-    url: https://ko-fi.com/zbule
-    icon: fa-solid fa-mug-hot
+    icon: "🐙"
