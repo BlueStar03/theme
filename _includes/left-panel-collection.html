@@ -4,14 +4,15 @@
 {% assign rest_docs = sorted | slice: 1, sorted.size %}
 
 <li class="collapsible-section">
-  <button
+  <a
+    href="{{ index_doc.url | relative_url }}"
     class="collapsible-toggle"
     aria-expanded="false"
     data-key="collection-{{ include.item.collection }}"
     data-index-url="{{ index_doc.url | relative_url }}"
   >
     {{ include.item.title }}
-  </button>
+  </a>
   <ul class="collapsible-content">
     {% assign grouped = rest_docs | group_by: "dir" %}
     {% for group in grouped %}

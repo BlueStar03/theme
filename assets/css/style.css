@@ -183,3 +183,12 @@ nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
 }
+
+.collapsible-section > .collapsible-toggle {
+  display: block;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
