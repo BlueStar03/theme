@@ -20,27 +20,23 @@ collections:
 
 
 # Define your sidebar order
+
 nav:
   - title: "Home"
     url: /
-    type: page
 
   - title: "GDD"
-    type: collection
-    collection: gdd
-    # url is derived from the first document’s permalink
+    url: /gdd/
 
-  - title: "Docs"
-    type: collection
-    collection: docs
+  - title: "Tutorials"
+    url: /tutorials/
 
-  - title: "Blog"
+  - title: "Devlog"
     url: /posts/
-    type: blog
 
   - title: "About"
     url: /about/
-    type: page
+
 
   
 
