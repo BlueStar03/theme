@@ -23,14 +23,6 @@ nav:
   - title: .🏠 Home
     url: /
     type: page
-  - title: 📜 GDD
-    url: /gdd
-    type: collection
-    collection: gdd
-  - title: 📖 Doc
-    url: /docs
-    type: collection
-    collection: docs
   - title: 📝 Devlog
     url: /posts
     type: blog
