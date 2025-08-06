@@ -1,4 +1,4 @@
-<!-- expects include.item -->
+<!-- _includes/left-panel-collection.html -->
 {% assign sorted    = site[include.item.collection] | sort: "order" %}
 {% assign index_doc = sorted[0] %}
 {% assign rest_docs = sorted | slice: 1, sorted.size %}

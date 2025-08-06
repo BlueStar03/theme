@@ -26,6 +26,9 @@ nav:
   - title: 📝 Devlog
     url: /posts
     type: blog
+  - title: 📚 Doc
+    url: /docs/
+    type: collections
   - title: 🛠️ About
     url: /about
     type: page
