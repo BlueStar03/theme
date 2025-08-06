@@ -1,19 +1,21 @@
 <div class="left-panel" id="leftPanel">
-  <nav>
-    <ul class="nav-list">
-      {% for item in site.nav %}
-        {% case item.type %}
-          {% when "page" %}
-            {% include left-panel-page.html item=item %}
-          {% when "collection" %}
-            {% include left-panel-collection.html item=item %}
-          {% when "blog" %}
-            {% include left-panel-blog.html item=item %}
-          {% else %}
-            {% include left-panel-page.html item=item %}
-        {% endcase %}
-      {% endfor %}
-    </ul>
-  </nav>
+  <div class="left-scroll">
+    <nav>
+      <ul class="nav-list">
+        {% for item in site.nav %}
+          {% case item.type %}
+            {% when "page" %}
+              {% include left-panel-page.html item=item %}
+            {% when "collection" %}
+              {% include left-panel-collection.html item=item %}
+            {% when "blog" %}
+              {% include left-panel-blog.html item=item %}
+            {% else %}
+              {% include left-panel-page.html item=item %}
+          {% endcase %}
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
   {% include footer.html %}
 </div>
