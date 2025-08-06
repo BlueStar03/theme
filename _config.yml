@@ -15,6 +15,8 @@ toc_icon: "📑"           # Default Unicode character
 collections:
   gdd:
     output: true
+  docs:
+    output: true
 
 
 nav:
