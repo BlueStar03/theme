@@ -1,36 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentURL = window.location.pathname;
 
-  document.querySelectorAll(".collapsible-toggle").forEach(button => {
-    const key = button.dataset.key;
-    const content = button.nextElementSibling;
-    const indexURL = button.dataset.indexUrl;
+  document.querySelectorAll(".collapsible-toggle").forEach(link => {
+    const key       = link.dataset.key;
+    const content   = link.nextElementSibling;
+    const indexURL  = link.dataset.indexUrl;
+    const savedOpen = localStorage.getItem(`nav-expanded-${key}`) === "true";
 
-    const isExpanded = localStorage.getItem(`nav-expanded-${key}`) === "true";
-
-    // Initial state
-    if (isExpanded) {
-      button.setAttribute("aria-expanded", "true");
+    // Restore state
+    if (savedOpen) {
+      link.setAttribute("aria-expanded", "true");
       content.classList.add("open");
     }
 
-    button.addEventListener("click", (e) => {
-      const currentlyExpanded = button.getAttribute("aria-expanded") === "true";
-      const isOnIndex = currentURL === indexURL;
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
 
-      if (!currentlyExpanded) {
-        // Expand and navigate to index
-        button.setAttribute("aria-expanded", "true");
+      const isExpanded = link.getAttribute("aria-expanded") === "true";
+      const onIndexPage = (currentURL === indexURL);
+
+      if (!isExpanded) {
+        // Expand + navigate
+        link.setAttribute("aria-expanded", "true");
         content.classList.add("open");
         localStorage.setItem(`nav-expanded-${key}`, "true");
         window.location.href = indexURL;
+
       } else {
-        if (!isOnIndex) {
-          // Stay expanded and go to index
+        if (!onIndexPage) {
+          // Stay expanded, go to index
           window.location.href = indexURL;
         } else {
-          // Collapse
-          button.setAttribute("aria-expanded", "false");
+          // Collapse only
+          link.setAttribute("aria-expanded", "false");
           content.classList.remove("open");
           localStorage.setItem(`nav-expanded-${key}`, "false");
         }
