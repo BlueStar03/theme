@@ -29,6 +29,7 @@ nav:
   - title: 📚 Doc
     url: /docs/
     type: collection
+    collection: docs
   - title: 🛠️ About
     url: /about
     type: page
