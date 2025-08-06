@@ -1,38 +1,46 @@
+// assets/js/nav-toggle.js
+
 document.addEventListener("DOMContentLoaded", () => {
-  const current = location.pathname;
+  const currentURL = window.location.pathname;
 
   document.querySelectorAll(".collapsible-toggle").forEach(el => {
     const key      = el.dataset.key;
     const content  = el.nextElementSibling;
     const indexURL = el.dataset.indexUrl;
-    const open     = localStorage.getItem(`nav-expanded-${key}`) === "true";
+    const saved    = localStorage.getItem(`nav-expanded-${key}`) === "true";
 
-    // restore
-    if (open) {
+    // Restore saved open/closed state without animation
+    if (saved) {
       el.setAttribute("aria-expanded", "true");
       content.classList.add("open");
     }
 
+    // Handle clicks on the link or toggle
     el.addEventListener("click", e => {
       e.preventDefault();
-      const isOpen   = el.getAttribute("aria-expanded") === "true";
-      const onIndex  = (current === indexURL);
+      const isOpen  = el.getAttribute("aria-expanded") === "true";
+      const onIndex = (currentURL === indexURL);
 
       if (!isOpen) {
-        // expand + go to index
+        // Was collapsed → expand + navigate to the index page
         el.setAttribute("aria-expanded", "true");
         content.classList.add("open");
         localStorage.setItem(`nav-expanded-${key}`, "true");
-        location.href = indexURL;
+        window.location.href = indexURL;
+
       } else if (!onIndex) {
-        // already open, just navigate
-        location.href = indexURL;
+        // Already expanded but on a deeper page → navigate to index
+        window.location.href = indexURL;
+
       } else {
-        // collapse
+        // Expanded and already on index → collapse
         el.setAttribute("aria-expanded", "false");
         content.classList.remove("open");
         localStorage.setItem(`nav-expanded-${key}`, "false");
       }
     });
   });
+
+  // Re-enable transitions after initial state restore
+  document.body.classList.remove("no-transitions");
 });

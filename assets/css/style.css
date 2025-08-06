@@ -194,3 +194,11 @@ nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
 }
+
+/* Disable transitions until JS has restored the state */
+body.no-transitions .collapsible-content,
+body.no-transitions main,
+body.no-transitions .left-panel,
+body.no-transitions .right-panel {
+  transition: none !important;
+}
