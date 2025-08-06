@@ -10,22 +10,29 @@
 html, body {
   height: 100%;
   font-family: sans-serif;
-  overflow: hidden; /* panels and main handle their own scrolling */
+  overflow: hidden; /* Panels and main handle their own scrolling */
 }
 
 /* --------------------------------------------------------------------------
    Header
    -------------------------------------------------------------------------- */
 header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
   height: 50px;
   background: #cce;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 1em;
+  position: relative;
   z-index: 2;
+}
+
+header button {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 0.25em 0.5em;
 }
 
 /* --------------------------------------------------------------------------
@@ -33,7 +40,7 @@ header {
    -------------------------------------------------------------------------- */
 .left-panel {
   position: fixed;
-  top: 50px;    /* below header */
+  top: 50px;      /* below header */
   bottom: 0;
   left: 0;
   width: 200px;
@@ -43,16 +50,32 @@ header {
   transition: left 0.3s ease;
   z-index: 1;
 }
+
 .left-panel.closed {
-  left: -200px; /* hide when collapsed */
+  left: -200px;
 }
 
 .left-panel .left-scroll {
-  flex: 1 1 auto;
+  flex: 1;
   overflow-y: auto;
   padding: 1em;
 }
 
+.left-panel .nav-list {
+  list-style: none;
+  padding: 0;
+}
+
+.left-panel .nav-list li + li {
+  margin-top: 0.5em;
+}
+
+.left-panel .nav-list a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Footer inside left panel */
 .left-panel footer {
   flex-shrink: 0;
   padding: 1em;
@@ -61,44 +84,11 @@ header {
 }
 
 /* --------------------------------------------------------------------------
-   Navigation List
-   -------------------------------------------------------------------------- */
-.nav-list {
-  list-style: none;
-  padding: 0;
-}
-.nav-list li + li {
-  margin-top: 0.5em;
-}
-.nav-list a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* --------------------------------------------------------------------------
-   Main Content Area
-   -------------------------------------------------------------------------- */
-main {
-  position: absolute;
-  top: 50px;
-  bottom: 0;
-  left: 200px;   /* beside left panel */
-  right: 0;      /* full width (unless you have a right panel) */
-  padding: 1em;
-  overflow-y: auto;
-  background: #fafafa;
-  transition: left 0.3s ease, right 0.3s ease;
-}
-
-body.hide-left  main { left: 0; }  /* expand into left gap when collapsed */
-body.hide-right main { right: 0; }
-
-/* --------------------------------------------------------------------------
    Right Panel (TOC / Aside)
    -------------------------------------------------------------------------- */
 .right-panel {
   position: fixed;
-  top: 50px;    /* below header */
+  top: 50px;      /* below header */
   bottom: 0;
   right: 0;
   width: 200px;
@@ -108,13 +98,114 @@ body.hide-right main { right: 0; }
   transition: right 0.3s ease;
   z-index: 1;
 }
+
 .right-panel.closed {
-  right: -200px; /* hide when collapsed */
+  right: -200px;
 }
 
 /* --------------------------------------------------------------------------
-   Optional: Smooth scroll for "Back to Top", TOC, etc.
+   Main Content Area
    -------------------------------------------------------------------------- */
-html {
-  scroll-behavior: smooth;
+main {
+  position: absolute;
+  top: 50px;     /* below header */
+  bottom: 0;
+  left: 200px;   /* beside left panel */
+  right: 200px;  /* beside right panel */
+  background: #fafafa;
+  overflow-y: auto;
+  padding: 1em;
+  transition: left 0.3s ease, right 0.3s ease;
+}
+
+body.hide-left  main { left: 0; }
+body.hide-right main { right: 0; }
+
+/* --------------------------------------------------------------------------
+   Collapsible Sections (if used)
+   -------------------------------------------------------------------------- */
+.collapsible-toggle {
+  display: block;
+  padding: 0.5em 1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.collapsible-content {
+  display: none;
+  padding-left: 1em;
+  list-style: disc;
+}
+
+.collapsible-content.open {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Table of Contents Styling (if used)
+   -------------------------------------------------------------------------- */
+.toc {
+  font-size: 0.9em;
+}
+
+.toc ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.toc li {
+  margin: 0.25em 0;
+}
+
+.toc li.sub {
+  margin-left: 1em;
+  font-size: 0.95em;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   Social Links in Footer (if used)
+   -------------------------------------------------------------------------- */
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 0.5em;
+  padding-left: 0;
+  margin-bottom: 0.5em;
+}
+
+.social-links a {
+  font-size: 1.2em;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Nested List Styling (Nav & Aside)
+   -------------------------------------------------------------------------- */
+nav ol, nav ul,
+aside ol, aside ul {
+  list-style: none;
+  padding-left: 1em;
+}
+
+nav li, aside li {
+  padding: 0.25em 0;
+}
+
+nav li > ol, nav li > ul,
+aside li > ol, aside li > ul {
+  margin-left: 1em;
 }
