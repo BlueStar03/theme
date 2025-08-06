@@ -3,16 +3,16 @@
 {%- assign rest_docs = docs | slice: 1, docs.size -%}
 
 <li class="collapsible-section">
-  <!-- Header link to the collection’s “index” document -->
-  <a href="{{ index_doc.url | relative_url }}"
-     class="collapsible-toggle"
-     aria-expanded="false"
-     data-key="collection-{{ include.item.collection }}"
-     data-index-url="{{ index_doc.url | relative_url }}">
-    {{ include.item.title }}
+  <a
+    href="{{ index_doc.url | relative_url }}"
+    class="collapsible-toggle"
+    aria-expanded="false"
+    data-key="collection-{{ include.item.collection }}"
+    data-index-url="{{ index_doc.url | relative_url }}"
+  >
+    <span class="toggle-icon">▶</span>
+    <span class="toggle-label">{{ include.item.title }}</span>
   </a>
-
-  <!-- Hidden until toggled open -->
   <ul class="collapsible-content">
     {% for doc in rest_docs %}
       <li>

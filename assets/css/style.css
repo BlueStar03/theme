@@ -202,3 +202,15 @@ body.no-transitions .left-panel,
 body.no-transitions .right-panel {
   transition: none !important;
 }
+/* Toggle icon—initially pointing right */
+.collapsible-toggle .toggle-icon {
+  display: inline-block;
+  margin-right: 0.5em;
+  transition: transform 0.3s ease;
+  /* optional: set font-size to match text */
+}
+
+/* When expanded, rotate to point down */
+.collapsible-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(90deg);
+}
