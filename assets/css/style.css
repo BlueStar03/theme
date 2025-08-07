@@ -171,9 +171,6 @@ header button {
   text-align: left;
 }
 
-.right-settings .doc-author,
-.right-settings .doc-date {
-}
 
 /* Theme-toggle button styling */
 .right-settings .theme-toggle {
@@ -193,6 +190,38 @@ header button {
   cursor: pointer;
   color: var(--text-color);
 }
+
+/* --------------------------------------------------------------------------
+   Floating TOC overlap
+   -------------------------------------------------------------------------- */
+.right-overlap {
+  position: fixed;
+  top: 0;                            /* align with top of viewport */
+  right: 0;                          /* align with right panel */
+  width: var(--panel-width);         /* same width as panel */
+  height: 3em;                       /* match header height */
+  background: var(--accent-color2);  /* or your choice */
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;                        /* above header (z-index:2) */
+  pointer-events: none;              /* clicks pass through */
+  font-weight: bold;
+}
+
+/* Push the scrollable TOC content down so it doesn’t sit under the overlap */
+.right-panel {
+  /* was top:3em; change to: */
+  top: 3em;  /* panel content starts below header */
+  /* note: .right-overlap is fixed, not inside .right-panel, so no change */
+}
+
+.right-scroll {
+  margin-top: 3em;  /* leave space for the overlap */
+  /* existing rules… */
+}
+
 
 
 /* --------------------------------------------------------------------------
