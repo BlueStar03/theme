@@ -87,7 +87,7 @@ header {
   justify-content: space-between;
   padding: 0 1em;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 header button {
   background: none;
@@ -190,19 +190,16 @@ header .header-actions {
 /* Settings at the bottom */
 .right-settings {
   flex-shrink: 0;
-  padding: 1em;
+  padding: 0.5em 1em;
   border-top: 1px solid var(--line-color);
-  text-align: center;
+  text-align: left;
 }
 .right-settings .doc-meta {
-  margin-bottom: 1em;
+
   font-size: 0.9em;
   color: var(--text-color2);
 }
-.right-settings .doc-author,
-.right-settings .doc-date {
-  margin: 0.25em 0;
-}
+
 .right-settings .theme-toggle {
   background: none;
   border: none;
@@ -292,4 +289,51 @@ nav li, aside li {
 nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
+}
+
+.right-overlap{
+  color: var(--text-color);
+  padding: 1em;
+  position: absolute;
+  top: -3em;
+  z-index: 1;
+}
+
+/* Panel‐attached header */
+.panel-header {
+  position: absolute;
+  top: -3em;           /* overlap into header */
+  left: 0;
+  width: 100%;
+  height: 3em;
+  background: var(--accent-color2);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  padding: 0 0.5em;
+  gap: 0.5em;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* Icon button in the overlap */
+.panel-header .theme-toggle {
+  pointer-events: auto;  /* re-enable clicking */
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Title text next to it */
+.panel-header .panel-title {
+  flex: 1;
+}
+
+/* Ensure the scroll area starts below both header and panel-header overlap */
+.right-scroll {
+  margin-top: 0; /* no extra, since overlap is outside panel’s content */
+  padding-top: 3em; /* push content below overlap */
 }
