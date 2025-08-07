@@ -371,3 +371,37 @@ aside li > ol, aside li > ul {
     pointer-events: none;
   }
 }
+
+@media (max-width: 768px) {
+  /* Panels become full-screen overlays */
+  .left-panel {
+    left: 0 !important;              /* fully on-screen when “open” */
+    width: 100vw;                    /* fill viewport */
+  }
+  .left-panel.closed {
+    left: -100vw !important;         /* fully off-screen when “closed” */
+  }
+
+  .right-panel {
+    right: 0 !important;             /* fully on-screen when “open” */
+    width: 100vw;                    /* fill viewport */
+  }
+  .right-panel.closed {
+    right: -100vw !important;        /* fully off-screen when “closed” */
+  }
+
+  /* Never move or resize the main content */
+  main {
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  /* Keep panels above the main content */
+  .left-panel,
+  .right-panel {
+    z-index: 10;
+  }
+  main {
+    z-index: 1;
+  }
+}
