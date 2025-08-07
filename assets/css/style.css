@@ -164,6 +164,19 @@ header button {
   text-align: center;
 }
 
+/* Document meta in right‐panel settings */
+.right-settings .doc-meta {
+  margin-bottom: 1em;
+  font-size: 0.9em;
+  color: var(--text-color2);
+  text-align: center;
+}
+
+.right-settings .doc-author,
+.right-settings .doc-date {
+  margin: 0.25em 0;
+}
+
 /* Theme-toggle button styling */
 .right-settings .theme-toggle {
   background: none;
