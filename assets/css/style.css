@@ -344,3 +344,16 @@ aside li > ol, aside li > ul {
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  /* Make each panel fill the viewport (or up to its var() max) */
+  .left-panel,
+  .right-panel {
+    width: 100vw;       /* full screen width */
+    max-width: 100%;    /* never exceed viewport */
+  }
+
+  /* When a panel is open on mobile, shift main fully off-screen */
+  body.hide-left  main { left: 0 !important; }
+  body.hide-right main { right: 0 !important; }
+}
