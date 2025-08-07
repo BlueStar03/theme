@@ -1,5 +1,7 @@
 ---
 title: Home
+author: zbule
+date: 2025-08-05 12:00:00 +0000
 ---
 
 # Markdown Features Demo
