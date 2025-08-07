@@ -6,6 +6,8 @@ description: test theme for Jekyll
 # Should the TOC include <h1>? (read by toc.js)
 toc-include-h1: false
 
+logo: "/assets/images/logo.png"
+
 # Collections (if you have any; optional)
 collections:
   gdd:

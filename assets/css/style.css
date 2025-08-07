@@ -329,3 +329,10 @@ nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
 }
+
+/* Logo in header toggle */
+#toggle-left .panel-logo {
+  max-height: 1.5em;
+  width: auto;
+  display: block;
+}
