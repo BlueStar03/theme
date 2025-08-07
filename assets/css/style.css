@@ -359,13 +359,15 @@ aside li > ol, aside li > ul {
 }
 
 @media (max-width: 768px) {
-  /* When the left panel is OPEN (i.e. body does NOT have .hide-left), hide the right toggle */
+  /* Left panel open → hide (but still reserve space for) the right toggle */
   body:not(.hide-left) #toggle-right {
-    display: none;
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  /* When the right panel is OPEN (i.e. body does NOT have .hide-right), hide the left toggle */
+  /* Right panel open → hide (but still reserve space for) the left toggle */
   body:not(.hide-right) #toggle-left {
-    display: none;
+    visibility: hidden;
+    pointer-events: none;
   }
 }
