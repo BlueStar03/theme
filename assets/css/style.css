@@ -129,6 +129,7 @@ header button {
 /* --------------------------------------------------------------------------
    Right Panel (TOC / Aside)
    -------------------------------------------------------------------------- */
+./* Right Panel as flex column */
 .right-panel {
   position: fixed;
   top: 3em;      /* below header */
@@ -136,15 +137,36 @@ header button {
   right: 0;
   width: var(--panel-width);
   background: var(--bg-color2);
-  overflow-y: auto;
-  padding: 1em;
+  display: flex;
+  flex-direction: column;
   transition: right 0.3s ease;
   z-index: 1;
 }
 
-.right-panel.closed {
-  right: calc(-1 * var(--panel-width));
+/* Scrollable TOC container */
+.right-panel .right-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1em;
 }
+
+/* Fixed Settings area at bottom */
+.right-panel .right-settings {
+  flex-shrink: 0;
+  padding: 1em;
+  border-top: 1px solid var(--line-color);
+  text-align: center;
+}
+
+/* Style the theme-toggle button */
+.right-panel .theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
 
 /* --------------------------------------------------------------------------
    Main Content Area
