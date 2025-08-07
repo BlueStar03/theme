@@ -266,6 +266,7 @@ main {
   background: var(--bg-color);
   padding: 1em;
   transition: left 0.3s ease, right 0.3s ease;
+  scroll-behavior: smooth;
 }
 body.hide-left  main { left: 0; }
 body.hide-right main { right: 0; }
