@@ -1,7 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const tocList = document.getElementById("toc-list");
+  const rightPanel = document.getElementById("rightPanel");
+  const body = document.body;
+
   if (!tocList) return;
 
+  // Your existing TOC generation logic...
   const includeH1 = document
     .querySelector('meta[name="toc-include-h1"]')
     ?.getAttribute("content") === "true";
@@ -13,23 +17,27 @@ document.addEventListener("DOMContentLoaded", function () {
   const headings = mainContent.querySelectorAll(selector);
 
   let currentH2Li = null;
-
   headings.forEach(heading => {
-    const id = heading.id || heading.textContent.trim().toLowerCase().replace(/\s+/g, "-");
-    heading.id = id;
+    if (!heading.id) {
+      heading.id = heading.textContent
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
 
-    const a = document.createElement("a");
-    a.href = `#${id}`;
-    a.textContent = heading.textContent;
+    const link = document.createElement("a");
+    link.href = `#${heading.id}`;
+    link.textContent = heading.textContent;
 
     const li = document.createElement("li");
     li.className = heading.tagName.toLowerCase();
-    li.appendChild(a);
+    li.appendChild(link);
 
-    if (heading.tagName.toLowerCase() === "h2" || heading.tagName.toLowerCase() === "h1") {
+    if (heading.tagName === "H2" || heading.tagName === "H1") {
       tocList.appendChild(li);
       currentH2Li = li;
-    } else if (heading.tagName.toLowerCase() === "h3" && currentH2Li) {
+    } else if (heading.tagName === "H3" && currentH2Li) {
       let subList = currentH2Li.querySelector("ul");
       if (!subList) {
         subList = document.createElement("ul");
@@ -37,7 +45,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       subList.appendChild(li);
     } else {
-      tocList.appendChild(li); // fallback
+      tocList.appendChild(li);
     }
+  });
+
+  // **NEW**: Close right panel on mobile when any TOC link is clicked
+  tocList.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      if (window.innerWidth <= 768) {
+        rightPanel.classList.add("closed");
+        body.classList.add("hide-right");
+      }
+    });
   });
 });
