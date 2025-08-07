@@ -159,26 +159,34 @@ header button {
 /* Settings area stuck at the bottom */
 .right-settings {
   flex-shrink: 0;
-  padding: 1em;
+  padding: 0.5em;
   border-top: 1px solid var(--line-color);
   text-align: center;
 }
 
 /* Document meta in right‐panel settings */
 .right-settings .doc-meta {
-  margin-bottom: 1em;
   font-size: 0.9em;
   color: var(--text-color2);
-  text-align: center;
+  text-align: left;
 }
 
 .right-settings .doc-author,
 .right-settings .doc-date {
-  margin: 0.25em 0;
 }
 
 /* Theme-toggle button styling */
 .right-settings .theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Theme toggle in right panel */
+.right-panel .theme-toggle {
+  display: block;
   background: none;
   border: none;
   font-size: 1.5em;
@@ -283,14 +291,4 @@ nav li, aside li {
 nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
-}
-/* Theme toggle in right panel */
-.right-panel .theme-toggle {
-  display: block;
-  margin-bottom: 1em;
-  background: none;
-  border: none;
-  font-size: 1.5em;
-  cursor: pointer;
-  color: var(--text-color);
 }

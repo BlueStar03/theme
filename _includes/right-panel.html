@@ -10,7 +10,7 @@
     <div class="doc-meta">
       {% if page.author or site.author %}
         <div class="doc-author">
-          By {{ page.author | default: site.author }}
+          By: {{ page.author | default: site.author }}
         </div>
       {% endif %}
       {% if page.date %}
