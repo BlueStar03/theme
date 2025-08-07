@@ -49,5 +49,5 @@ social:
 # Layout-related variables
 panel_width: 22em
 accent_color: cornflowerblue
-content_max: 66.67em
+content_max: 50em
 font_base: 16px

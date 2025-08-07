@@ -336,3 +336,11 @@ aside li > ol, aside li > ul {
   width: auto;
   display: block;
 }
+@media (max-width: 768px) {
+  /* Hide the page title on mobile if left panel is open */
+  body:not(.hide-left) header h1,
+  /* …or if right panel is open */
+  body:not(.hide-right) header h1 {
+    display: none;
+  }
+}
