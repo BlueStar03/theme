@@ -357,3 +357,15 @@ aside li > ol, aside li > ul {
   body.hide-left  main { left: 0 !important; }
   body.hide-right main { right: 0 !important; }
 }
+
+@media (max-width: 768px) {
+  /* If the left panel is open (i.e. body has no .hide-left), hide the right toggle */
+  body:not(.hide-left) header #toggle-right {
+    display: none;
+  }
+
+  /* If the right panel is open (i.e. body has no .hide-right), hide the left toggle */
+  body:not(.hide-right) header #toggle-left {
+    display: none;
+  }
+}
