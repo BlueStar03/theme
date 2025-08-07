@@ -144,6 +144,37 @@ header .header-actions {
   text-align: center;
 }
 
+/* Allow header overlap in left-panel */
+.left-panel {
+  overflow: visible;  /* so the overlapped header can be visible */
+}
+
+/* Panel-attached overlapped header */
+.left-panel-header {
+  position: absolute;
+  top: -3em;                 /* lift into site header area */
+  left: 0;
+  width: 100%;
+  height: 3em;
+  background: transparent;   /* let header show through, or use a color */
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;      /* clicks pass through to real header */
+  font-weight: bold;
+  z-index: 2;
+}
+
+/* Push the nav scroll area down below the overlapped header */
+.left-scroll {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1em;
+  padding-top: calc(1em + 3em); /* top padding + header height */
+}
+
+
 /* =========================
    Right Panel (TOC + Settings)
    ========================= */
