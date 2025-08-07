@@ -41,3 +41,9 @@ social:
   - title: GitHub
     url: https://github.com/yourhandle
     icon: "🐙"
+
+# Layout-related variables
+panel_width: 22em
+accent_color: cornflowerblue
+content_max: 66.67em
+font_base: 16px
