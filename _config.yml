@@ -23,12 +23,12 @@ fontawesome_kit: fe2b0ce82c
 nav:
   - title: 🏠 Home
     url: /
-  - title: 📄 Readme
-    url: /README
   - title: 📝 Blog
     url: /blog
-  - title: 📰 Updates
-    url: /updates
+  - title: 📄 Readme
+    url: /README
+
+
 
 social:
   - title: GitHub

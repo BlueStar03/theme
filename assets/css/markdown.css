@@ -1,0 +1,111 @@
+/* =========================
+   Markdown Content Styles
+   ========================= */
+
+/* Scope everything inside your content wrapper */
+main .content-inner {
+  color: var(--text-color);
+  font-family: var(--text-font);
+  line-height: 1.7;
+}
+
+/* Headings */
+main .content-inner h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+main .content-inner h2 {
+  font-size: 1.75em;
+  margin: 0.75em 0;
+}
+main .content-inner h3 {
+  font-size: 1.5em;
+  margin: 0.85em 0;
+}
+main .content-inner h4,
+main .content-inner h5,
+main .content-inner h6 {
+  margin: 1em 0;
+}
+
+/* Paragraphs */
+main .content-inner p {
+  margin: 1em 0;
+}
+
+/* Links */
+main .content-inner a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+main .content-inner a:hover {
+  color: var(--accent-color);
+}
+
+/* Lists */
+main .content-inner ul,
+main .content-inner ol {
+  margin: 1em 0 1em 1.5em;
+}
+main .content-inner ul li,
+main .content-inner ol li {
+  margin: 0.5em 0;
+}
+
+/* Blockquotes */
+main .content-inner blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 4px solid var(--accent-color);
+  background: var(--bg-color2);
+  color: var(--text-color2);
+}
+
+/* Inline code */
+main .content-inner code {
+  background: var(--bg-color2);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: var(--mono-font);
+}
+
+/* Code blocks */
+main .content-inner pre {
+  margin: 1em 0;
+  padding: 1em;
+  background: var(--bg-color2);
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: var(--mono-font);
+}
+
+/* Tables */
+main .content-inner table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+main .content-inner th,
+main .content-inner td {
+  border: 1px solid var(--line-color);
+  padding: 0.5em 0.75em;
+}
+main .content-inner th {
+  background: var(--bg-color2);
+  text-align: left;
+}
+
+/* Images and videos */
+main .content-inner img,
+main .content-inner video {
+  display: block;
+  max-width: 100%;
+  margin: 1em auto;
+}
+
+/* Horizontal rules */
+main .content-inner hr {
+  border: none;
+  border-top: 1px solid var(--line-color);
+  margin: 2em 0;
+}

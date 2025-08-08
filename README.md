@@ -68,6 +68,8 @@ toc_icon: fa fa-list
 
 toc-include-h1: true
 
+fontawesome_kit: abcde12345
+
 font_base: 16px
 panel_width: 20em
 accent_color: red
