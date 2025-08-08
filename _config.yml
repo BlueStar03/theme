@@ -48,3 +48,10 @@ social:
   - title: GitHub
     url: https://github.com/yourhandle
     icon: "🐙"
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
