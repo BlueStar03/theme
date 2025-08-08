@@ -1,55 +1,42 @@
 # Site Metadata
-title: My Jekyll Site
+title: BlueStar03 Theme
+description: “For Documents”
 lang: en
+
+title: “Chronicle Destiny Docs”
+
+remote_theme: BlueStar03/theme@v1.0.0
 
 logo: /assets/images/logo.svg
 
-# Layout Variables (used by _includes/style.html)
-panel_width: 20em
-accent_color: blue
-content_max: 66.67em
-font_base: 16px
+toc_icon: fa fa-list
 
-# Table of Contents
 toc-include-h1: true
 
-# Collections
-collections:
-  gdd:
-    output: true
-  tutorials:
-    output: true
+font_base: 16px
+panel_width: 20em
+accent_color: red
+content_max: 70em
 
-# Sidebar Navigation
 nav:
-  - title: "Home"
+  - title: 🏠 Home
     url: /
+  - title: 📄 Readme
+    url: /readme
+  - title: 📝 Blog
+    url: /blog
+  - title: 📰 Updates
+    url: /updates
 
-  - title: "GDD"
-    url: /gdd/
-
-  - title: "Tutorials"
-    url: /tutorials/
-
-  - title: "Devlog"
-    url: /posts/
-
-  - title: "About"
-    url: /about/
-
-# Social Links (footer)
 social:
-  - title: DeviantArt
-    url: https://deviantart.com/zbule
-    icon: "🖼️"
-
-  - title: Twitter
-    url: https://twitter.com/yourhandle
-    icon: "🐦"
-
   - title: GitHub
-    url: https://github.com/yourhandle
-    icon: "🐙"
+    url: https://github.com/your-user/your-repo
+    icon: fab fa-github
+  - title: Twitter
+    url: https://twitter.com/your-handle
+    icon: fab fa-twitter
+
+
 
 defaults:
   -
