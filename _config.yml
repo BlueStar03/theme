@@ -2,9 +2,9 @@ title: BlueStar theme
 author: zbule
 description: test theme for Jekyll
 
-# _config.yml
+toc-include-h1: true
 
-# … your existing settings …
+logo: "/assets/images/logo.svg"
 
 defaults:
   # everything (pages, posts, collection items) in the site
