@@ -209,6 +209,8 @@ header button#toggle-left img.panel-logo {
   font-weight: bold;
   z-index: 2;
 }
+
+
 .panel-header .theme-toggle {
   pointer-events: auto;
   background: none;
@@ -220,6 +222,13 @@ header button#toggle-left img.panel-logo {
 .panel-header .panel-title {
   flex: 1;
 }
+
+.right-panel .panel-header .panel-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .right-scroll {
   flex: 1 1 auto;
   overflow-y: auto;
@@ -279,6 +288,13 @@ body.hide-right main { right: 0; }
   margin-left: 1em;
   font-size: 0.95em;
   opacity: 0.85;
+}
+
+.right-panel .toc li.h1 {
+  font-size: 1.2em;
+  font-weight: bold;
+  border-bottom: 1px solid var(--link-color);
+  padding-bottom: 0.25em; /* optional spacing under the text */
 }
 
 /* =========================
