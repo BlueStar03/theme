@@ -3,7 +3,7 @@ title: My Jekyll Site
 lang: en
 
 # Layout Variables (used by _includes/style.html)
-panel_width: 40em
+panel_width: 20em
 accent_color: blue
 content_max: 66.67em
 font_base: 16px
