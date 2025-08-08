@@ -1,12 +1,34 @@
 <!-- _includes/style.html -->
 <style>
+  /* Accent + LIGHT theme defaults */
   :root {
-    --panel-width: {{ site.panel_width  | default: "20em"     }};
-    --accent-color: {{ site.accent_color  | default: "blue"    }};
-    --content-max: {{ site.content_max    | default: "66.67em" }};
+
+    --font-size:  {{ site.typography.font_size | default: "16px" }};
+    --text-font:  {{ site.typography.text_font  | default: "'Calibri', Tahoma, Geneva, Verdana, sans-serif" }};
+    --mono-font:  {{ site.typography.mono_font  | default: "Consolas, 'Courier New', Courier, monospace" }};
+
+    --panel-width:   {{ site.layout.panel_width   | default: "20em"     }};
+    --content-max:   {{ site.layout.content_max   | default: "66.67em"  }};
+    --header-height: {{ site.layout.header_height | default: "3em"      }};
+
+   
+    --color-accent:   {{ site.colors.accent            | default: "#ff0000" }};
+
+    --color-bg:       {{ site.colors.light.bg          | default: "#ffffff" }};
+    --color-bg-alt:   {{ site.colors.light.bg_alt      | default: "#f3f3f3" }};
+    --color-text:     {{ site.colors.light.text        | default: "#000000" }};
+    --color-text-alt: {{ site.colors.light.text_alt    | default: "#555555" }};
   }
 
-  html {
-    font-size: {{ site.font_base      | default: "16px" }};
+  [data-theme="dark"] {
+
+    --color-bg:       {{ site.colors.dark.bg        | default: "#1d1d1d" }};
+    --color-bg-alt:   {{ site.colors.dark.bg_alt    | default: "#2a2a2a" }};
+    --color-text:     {{ site.colors.dark.text      | default: "#ffffff" }};
+    --color-text-alt: {{ site.colors.dark.text_alt  | default: "#aaaaaa" }};
   }
 </style>
+
+<link rel="stylesheet" href="{{ '/assets/css/reset.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/markdown.css' | relative_url }}">

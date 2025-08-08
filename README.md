@@ -75,6 +75,21 @@ panel_width: 20em
 accent_color: red
 content_max: 70em
 
+
+colors:
+  accent:    "#0078d7"     # link/buttons highlight
+  light:
+    bg:        "#ffffff"     # page background (light)
+    bg_alt:    "#f3f3f3"     # panel/background (light)
+    text:      "#000000"     # main text (light)
+    text_alt:  "#555555"     # muted text (light)
+  dark:
+    bg:        "#1d1d1d"     # page background (dark)
+    bg_alt:    "#2a2a2a"     # panel/background (dark)
+    text:      "#ffffff"     # main text (dark)
+    text_alt:  "#aaaaaa"     # muted text (dark)
+
+
 nav:
   - title: 🏠 Home
     url: /

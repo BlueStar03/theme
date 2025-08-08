@@ -13,10 +13,30 @@ toc_icon: fa fa-list
 
 toc-include-h1: true
 
-font_base: 16px
-panel_width: 20em
-accent_color: blue
-content_max: 70em
+layout:
+  panel_width:  "20em"     # width of left & right panels
+  content_max:  "66.67em"  # max-width of main content
+  header_height: "3em"     # height of the top header bar
+
+
+typography:
+  font_size: "16px"  
+  text_font: "'Calibri', Tahoma, Geneva, Verdana, sans-serif"
+  mono_font: "Consolas, 'Courier New', Courier, monospace"
+
+
+colors:
+  accent:    "#6495ed"   # link/buttons highlight
+  light:
+    bg:        "#ffffff"     # page background (light)
+    bg_alt:    "#dddddd"     # panel/background (light)
+    text:      "#000000"     # main text (light)
+    text_alt:  "#555555"     # muted text (light)
+  dark:
+    bg:        "#1d1d1d"     # page background (dark)
+    bg_alt:    "#2a2a2a"     # panel/background (dark)
+    text:      "#ffffff"     # main text (dark)
+    text_alt:  "#aaaaaa"     # muted text (dark)
 
 fontawesome_kit: fe2b0ce82c
 
@@ -27,6 +47,8 @@ nav:
     url: /blog
   - title: 📄 Readme
     url: /README
+  - title: Dbug
+    url: /dbug
 
 
 

@@ -1,111 +1,115 @@
-/* =========================
-   Markdown Content Styles
-   ========================= */
+/* Markdown content — minimal overrides, inherit everything else */
+main .content-inner { line-height: 1.7; }
 
-/* Scope everything inside your content wrapper */
-main .content-inner {
-  color: var(--text-color);
-  font-family: var(--text-font);
-  line-height: 1.7;
-}
-
-/* Headings */
-main .content-inner h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-main .content-inner h2 {
-  font-size: 1.75em;
-  margin: 0.75em 0;
-}
-main .content-inner h3 {
-  font-size: 1.5em;
-  margin: 0.85em 0;
-}
+/* Headings: just spacing & sizes (color inherits) */
+main .content-inner h1,
+main .content-inner h2,
+main .content-inner h3,
 main .content-inner h4,
 main .content-inner h5,
 main .content-inner h6 {
-  margin: 1em 0;
+  margin: 1.2em 0 0.5em;
+  line-height: 1.25;
+  font-weight: 700;
 }
+main .content-inner h1 { font-size: clamp(1.8rem, 2.5vw, 2.2rem); }
+main .content-inner h2 { font-size: clamp(1.6rem, 2.2vw, 1.9rem); }
+main .content-inner h3 { font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
+main .content-inner h4 { font-size: 1.2rem; }
+main .content-inner h5 { font-size: 1.05rem; }
+main .content-inner h6 { font-size: 0.95rem; }
 
-/* Paragraphs */
-main .content-inner p {
-  margin: 1em 0;
-}
+/* Paragraphs & text flow */
+main .content-inner p { margin: 1em 0; }
 
-/* Links */
+/* Links: accent color, then invert on hover/focus */
 main .content-inner a {
-  color: var(--link-color);
-  text-decoration: underline;
+  color: var(--color-accent);
 }
-main .content-inner a:hover {
-  color: var(--accent-color);
+main .content-inner a:hover,
+main .content-inner a:focus {
+  background: var(--color-accent);
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: 0.2em;
+
 }
+main .content-inner a:focus { outline: 2px solid var(--color-text); outline-offset: 2px; }
 
 /* Lists */
 main .content-inner ul,
-main .content-inner ol {
-  margin: 1em 0 1em 1.5em;
-}
-main .content-inner ul li,
-main .content-inner ol li {
-  margin: 0.5em 0;
-}
+main .content-inner ol { margin: 1em 0 1em 1.5em; }
+main .content-inner li { margin: 0.4em 0; }
 
 /* Blockquotes */
 main .content-inner blockquote {
-  margin: 1em 0;
-  padding: 0.5em 1em;
-  border-left: 4px solid var(--accent-color);
-  background: var(--bg-color2);
-  color: var(--text-color2);
+  margin: 1.2em 0;
+  padding: 0.75em 1em;
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-bg-alt);
+  color: var(--color-text-alt);
 }
 
-/* Inline code */
+/* Code (inline & blocks) — needs mono font + bg */
 main .content-inner code {
-  background: var(--bg-color2);
-  padding: 0.2em 0.4em;
+  background: var(--color-bg-alt);
+  padding: 0.15em 0.35em;
   border-radius: 3px;
   font-family: var(--mono-font);
+  font-size: 0.95em;
 }
-
-/* Code blocks */
 main .content-inner pre {
-  margin: 1em 0;
+  margin: 1.2em 0;
   padding: 1em;
-  background: var(--bg-color2);
+  background: var(--color-bg-alt);
   border-radius: 4px;
-  overflow-x: auto;
+  overflow: auto;
   font-family: var(--mono-font);
+  font-size: 0.95em;
+  line-height: 1.5;
 }
+main .content-inner pre code { background: transparent; padding: 0; border-radius: 0; }
 
 /* Tables */
-main .content-inner table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1em 0;
-}
+main .content-inner table { width: 100%; border-collapse: collapse; margin: 1.2em 0; }
 main .content-inner th,
 main .content-inner td {
-  border: 1px solid var(--line-color);
-  padding: 0.5em 0.75em;
+  border: 1px solid var(--color-text-alt);
+  padding: 0.6em 0.8em;
+  vertical-align: top;
 }
-main .content-inner th {
-  background: var(--bg-color2);
-  text-align: left;
-}
+main .content-inner th { background: var(--color-bg-alt); text-align: left; }
 
-/* Images and videos */
+/* Media */
 main .content-inner img,
 main .content-inner video {
   display: block;
   max-width: 100%;
+  height: auto;
   margin: 1em auto;
 }
 
-/* Horizontal rules */
+/* Horizontal rule */
 main .content-inner hr {
-  border: none;
-  border-top: 1px solid var(--line-color);
+  border: 0;
+  border-top: 1px solid var(--color-text-alt);
   margin: 2em 0;
+}
+
+/* Details/summary */
+main .content-inner details {
+  background: var(--color-bg-alt);
+  padding: 0.75em 1em;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+main .content-inner summary { font-weight: 600; cursor: pointer; }
+
+/* Footnotes */
+main .content-inner .footnotes {
+  margin-top: 2em;
+  font-size: 0.95em;
+  color: var(--color-text-alt);
+  border-top: 1px solid var(--color-text-alt);
+  padding-top: 1em;
 }

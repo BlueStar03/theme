@@ -1,89 +1,9 @@
 /* =========================
-   Theme Colors (Dark/Light)
-   ========================= */
-:root {
-  /* Typography */
-  --text-font: 'Calibri', Tahoma, Geneva, Verdana, sans-serif;
-  --mono-font: Consolas, 'Courier New', Courier, monospace;
-  --font-size: 16px;
-
-  /* Layout */
-  --panel-width: 13em;
-  --content-max: 66.67em;
-
-  /* Colors */
-  --accent-color: blue;
-  --accent-color2: cornflowerblue;
-  --accent-color3: aliceblue;
-  --bg-color: #222;
-  --bg-color2: #1a1a1a;
-  --text-color: #dddddd;
-  --text-color2: #aaaaaa;
-  --line-color: #444444;
-  --link-color: cornflowerblue;
-  --hover-color: #add8e6;
-}
-
-[data-theme="light"] {
-  --bg-color: #eee;
-  --bg-color2: #ddd;
-  --text-color: #333;
-  --text-color2: #555;
-  --line-color: #999;
-  --link-color: cornflowerblue;
-  --hover-color: #add8e6;
-}
-
-/* =========================
-   Link Styles
-   ========================= */
-a {
-  color: var(--link-color);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--hover-color);
-  text-decoration: underline;
-}
-
-/* =========================
-   RESET
-   ========================= */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-html {
-  font-size: var(--font-size);
-}
-body {
-  font-family: var(--text-font);
-  color: var(--text-color);
-  background: var(--bg-color);
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  overflow: hidden;
-}
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
-}
-input, button, textarea, select {
-  font: inherit;
-}
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
-}
-p { text-wrap: pretty; }
-h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
-
-/* =========================
    Header
    ========================= */
 header {
-  height: 3em;
-  background: var(--accent-color);
+  height: var(--header-height);
+  background: var(--color-accent);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -91,17 +11,18 @@ header {
   position: relative;
   z-index: 1;
 }
+
 header button {
   background: none;
   border: none;
   font-size: 1.5em;
   cursor: pointer;
   padding: 0.25em 0.5em;
-  color: var(--text-color);
+  color: var(--color-text);
 }
 
 header #toggle-left img.panel-logo {
-  height: 1.5em !important;
+  height: calc(var(--header-height) / 2) !important;
   width: auto !important;
   object-fit: contain;
 }
@@ -111,60 +32,98 @@ header #toggle-left img.panel-logo {
    ========================= */
 .left-panel {
   position: fixed;
-  top: 3em;
+  top: var(--header-height);
   bottom: 0;
   left: 0;
   transform: translateX(0);
   width: var(--panel-width);
-  background: var(--bg-color2);
+  background: var(--color-bg-alt);
   display: flex;
   flex-direction: column;
   z-index: 1;
   overflow: visible;
 }
+
 .left-panel.closed {
   transform: translateX(-100%);
 }
+
 .transitions .left-panel {
   transition: transform 0.3s ease;
 }
+
 .left-panel-header {
   position: absolute;
-  top: -3em;              /* lift it up into the site header area */
+  top: calc(-1 * var(--header-height));
   left: 0;
   width: 100%;
-  height: 3em;
-  background: transparent; /* let the site header show through */
-  color: var(--text-color);
+  height: var(--header-height);
+  background: transparent;
+  color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
   font-weight: bold;
-  z-index: 3;             /* above your site header’s z-index */
+  z-index: 3;
 }
 
 .left-panel .left-scroll {
   flex: 1 1 auto;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 1em;
+  /*! padding: 1em; */
 }
+
 .left-panel .nav-list {
   list-style: none;
   padding: 0;
 }
+
+.left-panel .nav-list a {
+  display: block;                 /* makes the hover area full width */
+  padding: 0.4em 0.6em;            /* some breathing room */
+  color: inherit;
+  text-decoration: none;
+}
+
+.left-panel .nav-list a:hover,
+.left-panel .nav-list a:focus {
+  background: var(--color-accent); /* accent-colored background */
+  color: var(--color-text);        /* keep text readable */
+  border-radius: 0;                /* make it stretch edge to edge */
+}
+
+
 .left-panel .nav-list li + li {
   margin-top: 0.5em;
 }
+
 .left-panel .nav-list a {
   color: inherit;
   text-decoration: none;
 }
+
+.left-panel .nav-list a {
+  display: block;
+  padding: 0.5em 1em; /* controls both vertical and horizontal spacing */
+  color: inherit;
+  text-decoration: none;
+}
+
+.left-panel .nav-list a:hover,
+.left-panel .nav-list a:focus {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+.left-panel .nav-list li + li {
+  margin-top: 0;
+}
+
 .left-panel footer {
   flex-shrink: 0;
   padding: 1em;
-  border-top: 1px solid var(--line-color);
+  border-top: 1px solid var(--color-text);
   font-size: 0.9em;
   text-align: center;
 }
@@ -174,31 +133,34 @@ header #toggle-left img.panel-logo {
    ========================= */
 .right-panel {
   position: fixed;
-  top: 3em;
+  top: var(--header-height);
   bottom: 0;
   right: 0;
   transform: translateX(0);
   width: var(--panel-width);
-  background: var(--bg-color2);
+  background: var(--color-bg-alt);
   display: flex;
   flex-direction: column;
   z-index: 1;
   overflow: visible;
 }
+
 .right-panel.closed {
   transform: translateX(100%);
 }
+
 .transitions .right-panel {
   transition: transform 0.3s ease;
 }
+
 .panel-header {
   position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3em;
-  background: var(--bg-color2);
-  color: var(--text-color);
+  height: var(--header-height);
+  background: var(--color-bg-alt);
+  color: var(--color-text);
   display: flex;
   align-items: center;
   padding: 0 0.5em;
@@ -207,48 +169,53 @@ header #toggle-left img.panel-logo {
   font-weight: bold;
   z-index: 2;
 }
+
 .panel-header .theme-toggle {
   pointer-events: auto;
   background: none;
   border: none;
   font-size: 1.2em;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--color-text);
 }
+
 .panel-header .panel-title {
   flex: 1;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
+
 .right-scroll {
   flex: 1 1 auto;
   overflow-y: auto;
   padding: 1em;
   padding-top: 0;
 }
+
 .right-settings {
   flex-shrink: 0;
   padding: 0.5em 1em;
-  border-top: 1px solid var(--line-color);
+  border-top: 1px solid var(--color-text);
   text-align: left;
 }
+
 .right-settings .doc-meta {
   font-size: 0.9em;
-  color: var(--text-color2);
-}
-/* Right panel header: overlap the site header */
-.right-panel .panel-header {
-  position: absolute !important;
-  top: -3em !important;       /* move it up into the header bar */
-  left: 0;
-  width: 100%;
-  height: 3em;
-  background: transparent;     /* let the site header show through */
-  pointer-events: none;
-  z-index: 3;                  /* above the main header (z-index:1) */
+  color: var(--color-text-alt);
 }
 
+/* Right panel header overlap */
+.right-panel .panel-header {
+  position: absolute !important;
+  top: calc(-1 * var(--header-height)) !important;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: transparent;
+  pointer-events: none;
+  z-index: 3;
+}
 
 /* =========================
    Main Content Area
@@ -259,22 +226,26 @@ header #toggle-left img.panel-logo {
   width: 100%;
   padding: 0 1em;
 }
+
 main {
   position: absolute;
-  top: 3em;
+  top: var(--header-height);
   bottom: 0;
   left: var(--panel-width);
   right: var(--panel-width);
   overflow-y: auto;
-  background: var(--bg-color);
+  background: var(--color-bg);
   padding: 1em;
 }
+
 .transitions main {
   transition: left 0.3s ease, right 0.3s ease;
 }
+
 body.hide-left main {
   left: 0;
 }
+
 body.hide-right main {
   right: 0;
 }
@@ -285,23 +256,27 @@ body.hide-right main {
 .toc {
   font-size: 0.9em;
 }
+
 .toc ul {
   list-style: none;
   padding-left: 0;
 }
+
 .toc li {
   margin: 0.25em 0;
 }
+
 .toc li.sub {
   margin-left: 1em;
   font-size: 0.95em;
   opacity: 0.85;
 }
+
 /* H1 entries styling */
 .right-panel .toc li.h1 {
   font-size: 1.2em;
   font-weight: bold;
-  border-bottom: 1px solid var(--link-color);
+  border-bottom: 1px solid var(--color-accent);
   padding-bottom: 0.25em;
 }
 
@@ -315,11 +290,13 @@ body.hide-right main {
   padding-left: 0;
   margin-bottom: 0.5em;
 }
+
 .social-links a {
   font-size: 1.2em;
   text-decoration: none;
   color: inherit;
 }
+
 .sr-only {
   position: absolute;
   width: 1px; height: 1px;
@@ -338,9 +315,11 @@ aside ol, aside ul {
   list-style: none;
   padding-left: 1em;
 }
+
 nav li, aside li {
-  padding: 0.25em 0;
+  /*! padding: 0.25em 0; */
 }
+
 nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
@@ -350,40 +329,40 @@ aside li > ol, aside li > ul {
    Mobile-Specific Overrides
    ========================= */
 @media (max-width: 768px) {
-  /* Panels span full viewport */
   :root {
     --panel-width: 100vw;
   }
+
   .left-panel,
   .right-panel {
     width: 100vw;
   }
 
-  /* Prevent content from shifting */
   main {
     left: 0 !important;
     right: 0 !important;
   }
 
-  /* Hide title when a panel is open */
   body:not(.hide-left) header h1,
   body:not(.hide-right) header h1 {
     display: none;
   }
 
-  /* Hide the other toggle when one panel is open */
   body:not(.hide-left) #toggle-right {
     display: none;
   }
+
   body:not(.hide-right) #toggle-left {
     display: none;
   }
 
-  /* Reposition header toggles */
   body:not(.hide-right) header {
     justify-content: flex-end;
   }
+
   body:not(.hide-left) header {
     justify-content: flex-start;
   }
 }
+
+

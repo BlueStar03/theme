@@ -108,25 +108,16 @@ def hello():
 
 ## 🗂 Heading Depth Test
 
-### H2 Heading
+### H3 Heading
 
-#### H3 Heading
+#### H4 Heading
 
-##### H4 Heading
+##### H5 Heading
 
-###### H5 Heading
-
----
-
-## 🧪 HTML Inside Markdown
-
-<p><strong>This is HTML</strong> inside a markdown file.</p>
-
-<div style="padding: 1em; background: #eee; border-radius: 6px;">
-  <em>Custom styled HTML block</em>
-</div>
+###### H6 Heading
 
 ---
+
 
 ## ✅ Done!
 
