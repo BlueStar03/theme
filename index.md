@@ -73,8 +73,8 @@ function greet(name) {
 
 ## 🔗 Links
 
-* [OpenAI](https://openai.com)
-* [Jekyll Documentation](https://jekyllrb.com/docs/)
+- [OpenAI](https://openai.com)
+- [Jekyll Documentation](https://jekyllrb.com/docs/)
 
 ---
 

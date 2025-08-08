@@ -1,16 +1,50 @@
-title: BlueStar theme
-author: zbule
-description: test theme for Jekyll
+# Site Metadata
+title: My Jekyll Site
+lang: en
 
+# Layout Variables (used by _includes/style.html)
+panel_width: 40em
+accent_color: blue
+content_max: 66.67em
+font_base: 16px
+
+# Table of Contents
 toc-include-h1: true
 
-logo: "/assets/images/logo.svg"
+# Collections
+collections:
+  gdd:
+    output: true
+  tutorials:
+    output: true
 
-defaults:
-  # everything (pages, posts, collection items) in the site
-  - scope:
-      path: ""       # all files
-    values:
-      layout: default
+# Sidebar Navigation
+nav:
+  - title: "Home"
+    url: /
 
- 
+  - title: "GDD"
+    url: /gdd/
+
+  - title: "Tutorials"
+    url: /tutorials/
+
+  - title: "Devlog"
+    url: /posts/
+
+  - title: "About"
+    url: /about/
+
+# Social Links (footer)
+social:
+  - title: DeviantArt
+    url: https://deviantart.com/zbule
+    icon: "🖼️"
+
+  - title: Twitter
+    url: https://twitter.com/yourhandle
+    icon: "🐦"
+
+  - title: GitHub
+    url: https://github.com/yourhandle
+    icon: "🐙"

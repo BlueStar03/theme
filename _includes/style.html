@@ -1,2 +1,12 @@
-<link rel="stylesheet" href="{{ '/assets/css/reset.css' | relative_url }}" />
-<link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
+<!-- _includes/style.html -->
+<style>
+  :root {
+    --panel-width: {{ site.panel_width  | default: "13em"     }};
+    --accent-color: {{ site.accent_color  | default: "blue"    }};
+    --content-max: {{ site.content_max    | default: "66.67em" }};
+  }
+
+  html {
+    font-size: {{ site.font_base      | default: "16px" }};
+  }
+</style>

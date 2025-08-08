@@ -1,17 +1,21 @@
 <!-- _includes/left-panel.html -->
 <div class="left-panel closed" id="leftPanel">
 
-  <!-- Panel‐attached overlapped header -->
+  <!-- Panel-attached overlapped header -->
   <div class="left-panel-header">
     {{ site.title }}
   </div>
 
-  <!-- Scrollable nav area -->
+  <!-- Scrollable navigation area -->
   <div class="left-scroll">
     <nav>
       <ul class="nav-list">
         {% for item in site.nav %}
-          <li><a href="{{ item.url | relative_url }}">{{ item.title }}</a></li>
+          <li>
+            <a href="{{ item.url | relative_url }}">
+              {{ item.title }}
+            </a>
+          </li>
         {% endfor %}
       </ul>
     </nav>

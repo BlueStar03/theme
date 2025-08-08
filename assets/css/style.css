@@ -33,7 +33,7 @@
 }
 
 /* =========================
-   BASE
+   Link Styles
    ========================= */
 a {
   color: var(--link-color);
@@ -44,12 +44,37 @@ a:hover {
   text-decoration: underline;
 }
 
+/* =========================
+   RESET
+   ========================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: var(--font-size);
+}
 body {
   font-family: var(--text-font);
   color: var(--text-color);
   background: var(--bg-color);
-  overflow: hidden; /* main and panels scroll themselves */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 }
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+p { text-wrap: pretty; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
 
 /* =========================
    Header
@@ -82,7 +107,7 @@ header .header-actions {
    ========================= */
 .left-panel {
   position: fixed;
-  top: 3em;             /* below header */
+  top: 3em;
   bottom: 0;
   left: 0;
   width: var(--panel-width);
@@ -91,14 +116,31 @@ header .header-actions {
   flex-direction: column;
   transition: left 0.3s ease;
   z-index: 1;
+  overflow: visible;
 }
 .left-panel.closed {
   left: calc(-1 * var(--panel-width));
+}
+.left-panel-header {
+  position: absolute;
+  top: -3em;
+  left: 0;
+  width: 100%;
+  height: 3em;
+  background: transparent;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 2;
 }
 .left-panel .left-scroll {
   flex: 1 1 auto;
   overflow-y: auto;
   padding: 1em;
+  padding-top: calc(1em + 3em);
 }
 .left-panel .nav-list {
   list-style: none;
@@ -119,43 +161,12 @@ header .header-actions {
   text-align: center;
 }
 
-/* Allow header overlap in left-panel */
-.left-panel {
-  overflow: visible;  /* so the overlapped header can be visible */
-}
-
-/* Panel-attached overlapped header */
-.left-panel-header {
-  position: absolute;
-  top: -3em;                 /* lift into site header area */
-  left: 0;
-  width: 100%;
-  height: 3em;
-  background: transparent;   /* let header show through, or use a color */
-  color: var(--text-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;      /* clicks pass through to real header */
-  font-weight: bold;
-  z-index: 2;
-}
-
-/* Push the nav scroll area down below the overlapped header */
-.left-scroll {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  padding: 1em;
-  padding-top: calc(1em + 3em); /* top padding + header height */
-}
-
-
 /* =========================
    Right Panel (TOC + Settings)
    ========================= */
 .right-panel {
   position: fixed;
-  top: 3em;             /* below header */
+  top: 3em;
   bottom: 0;
   right: 0;
   width: var(--panel-width);
@@ -164,16 +175,14 @@ header .header-actions {
   flex-direction: column;
   transition: right 0.3s ease;
   z-index: 1;
-  overflow: visible;    /* allow overlap header */
+  overflow: visible;
 }
 .right-panel.closed {
   right: calc(-1 * var(--panel-width));
 }
-
-/* Panel‐attached overlapped header */
 .panel-header {
   position: absolute;
-  top: -3em;            /* overlap into header */
+  top: -3em;
   left: 0;
   width: 100%;
   height: 3em;
@@ -187,29 +196,23 @@ header .header-actions {
   font-weight: bold;
   z-index: 2;
 }
-/* Theme toggle in the overlapped header */
 .panel-header .theme-toggle {
-  pointer-events: auto;  /* re-enable clicking */
+  pointer-events: auto;
   background: none;
   border: none;
   font-size: 1.2em;
   cursor: pointer;
   color: var(--text-color);
 }
-/* Title text next to the toggle */
 .panel-header .panel-title {
   flex: 1;
 }
-
-/* TOC scroll area */
 .right-scroll {
   flex: 1 1 auto;
   overflow-y: auto;
   padding: 1em;
-  padding-top: 0; /* content starts below overlapped header */
+  padding-top: 0;
 }
-
-/* Settings at the bottom */
 .right-settings {
   flex-shrink: 0;
   padding: 0.5em 1em;
@@ -220,7 +223,6 @@ header .header-actions {
   font-size: 0.9em;
   color: var(--text-color2);
 }
-.right-settings .theme-toggle { /* removed from here */ }
 
 /* =========================
    Main Content Area
@@ -233,7 +235,7 @@ header .header-actions {
 }
 main {
   position: absolute;
-  top: 3em;             /* below header */
+  top: 3em;
   bottom: 0;
   left: var(--panel-width);
   right: var(--panel-width);
@@ -241,9 +243,8 @@ main {
   background: var(--bg-color);
   padding: 1em;
   transition: left 0.3s ease, right 0.3s ease;
-  scroll-behavior: smooth;
 }
-body.hide-left  main { left: 0; }
+body.hide-left main { left: 0; }
 body.hide-right main { right: 0; }
 
 /* =========================
@@ -304,80 +305,4 @@ nav li, aside li {
 nav li > ol, nav li > ul,
 aside li > ol, aside li > ul {
   margin-left: 1em;
-}
-
-/* Logo in header toggle */
-#toggle-left .panel-logo {
-  max-height: 1.5em;
-  width: auto;
-  display: block;
-}
-@media (max-width: 768px) {
-  /* Hide the page title on mobile if left panel is open */
-  body:not(.hide-left) header h1,
-  /* …or if right panel is open */
-  body:not(.hide-right) header h1 {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Make each panel fill the viewport (or up to its var() max) */
-  .left-panel,
-  .right-panel {
-    width: 100vw;       /* full screen width */
-    max-width: 100%;    /* never exceed viewport */
-  }
-
-  /* When a panel is open on mobile, shift main fully off-screen */
-  body.hide-left  main { left: 0 !important; }
-  body.hide-right main { right: 0 !important; }
-}
-
-@media (max-width: 768px) {
-  /* Left panel open → hide (but still reserve space for) the right toggle */
-  body:not(.hide-left) #toggle-right {
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  /* Right panel open → hide (but still reserve space for) the left toggle */
-  body:not(.hide-right) #toggle-left {
-    visibility: hidden;
-    pointer-events: none;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Panels become full-screen overlays */
-  .left-panel {
-    left: 0 !important;              /* fully on-screen when “open” */
-    width: 100vw;                    /* fill viewport */
-  }
-  .left-panel.closed {
-    left: -100vw !important;         /* fully off-screen when “closed” */
-  }
-
-  .right-panel {
-    right: 0 !important;             /* fully on-screen when “open” */
-    width: 100vw;                    /* fill viewport */
-  }
-  .right-panel.closed {
-    right: -100vw !important;        /* fully off-screen when “closed” */
-  }
-
-  /* Never move or resize the main content */
-  main {
-    left: 0 !important;
-    right: 0 !important;
-  }
-
-  /* Keep panels above the main content */
-  .left-panel,
-  .right-panel {
-    z-index: 10;
-  }
-  main {
-    z-index: 1;
-  }
 }

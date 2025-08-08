@@ -1,5 +1,6 @@
 <!-- _includes/header.html -->
 <header>
+  <!-- Left panel toggle: logo or fallback icon -->
   <button id="toggle-left" aria-label="Toggle left panel">
     {% if site.logo %}
       <img src="{{ site.logo | relative_url }}" alt="{{ site.title }} logo" class="panel-logo" />
@@ -8,9 +9,11 @@
     {% endif %}
   </button>
 
+  <!-- Page title (falls back to site title) -->
   <h1>{{ page.title | default: site.title }}</h1>
 
-  <button id="toggle-right" aria-label="Toggle TOC">
+  <!-- Right panel (TOC) toggle -->
+  <button id="toggle-right" aria-label="Toggle Table of Contents">
     {% if site.toc_icon contains "fa-" %}
       <i class="{{ site.toc_icon }}"></i>
     {% else %}
