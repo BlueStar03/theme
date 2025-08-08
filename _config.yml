@@ -2,6 +2,8 @@
 title: My Jekyll Site
 lang: en
 
+logo: /assets/images/logo.svg
+
 # Layout Variables (used by _includes/style.html)
 panel_width: 20em
 accent_color: blue
