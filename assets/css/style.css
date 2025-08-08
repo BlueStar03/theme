@@ -121,9 +121,7 @@ header .header-actions {
   overflow: visible;
 }
 
-.transitions .left-panel {
-  transition: left 0.3s ease;
-}
+
 
 header button#toggle-left img.panel-logo {
   max-height: 1.5em; 
@@ -187,9 +185,7 @@ header button#toggle-left img.panel-logo {
   z-index: 1;
   overflow: visible;
 }
-.transitions .right-panel {
-  transition: right 0.3s ease;
-}
+
 .right-panel.closed {
   right: calc(-1 * var(--panel-width));
 }
@@ -388,3 +384,29 @@ aside li > ol, aside li > ul {
   }
 }
 
+
+/* Base state: panel is flush against the edge */
+.left-panel {
+  left: 0;
+  transform: translateX(0);
+  /* keep all your other left-panel rules here */
+}
+.right-panel {
+  right: 0;
+  transform: translateX(0);
+  /* keep all your other right-panel rules here */
+}
+
+/* Closed state: slide completely off-screen */
+.left-panel.closed {
+  transform: translateX(-100%);
+}
+.right-panel.closed {
+  transform: translateX(100%);
+}
+
+/* Only animate transforms once .transitions is on the body */
+.transitions .left-panel,
+.transitions .right-panel {
+  transition: transform 0.3s ease;
+}
