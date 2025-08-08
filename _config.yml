@@ -1,0 +1,16 @@
+title: BlueStar theme
+author: zbule
+description: test theme for Jekyll
+
+# _config.yml
+
+# … your existing settings …
+
+defaults:
+  # everything (pages, posts, collection items) in the site
+  - scope:
+      path: ""       # all files
+    values:
+      layout: default
+
+ 

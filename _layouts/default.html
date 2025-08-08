@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<head>
+  {% include head.html %}
+</head>
+<body class="hide-left hide-right no-transitions">
+  {% include header.html %}
+  {% include left-panel.html %}
+<main id="mainContent">
+  <div class="content-inner">
+    {{ content }}
+  </div>
+</main>
+
+  {% include right-panel.html %}
+  {% include scripts.html %}
+</body>
+</html>
