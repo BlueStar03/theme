@@ -3,9 +3,9 @@ title: BlueStar03 Theme
 description: “For Documents”
 lang: en
 
-title: “Chronicle Destiny Docs”
+title: BlueStar03 Theme
 
-remote_theme: BlueStar03/theme@v1.0.0
+#remote_theme: BlueStar03/theme@v1.0.0
 
 logo: /assets/images/logo.svg
 
@@ -15,7 +15,7 @@ toc-include-h1: true
 
 font_base: 16px
 panel_width: 20em
-accent_color: red
+accent_color: blue
 content_max: 70em
 
 fontawesome_kit: fe2b0ce82c
@@ -24,7 +24,7 @@ nav:
   - title: 🏠 Home
     url: /
   - title: 📄 Readme
-    url: /readme
+    url: /README
   - title: 📝 Blog
     url: /blog
   - title: 📰 Updates

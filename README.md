@@ -1,3 +1,8 @@
+---
+title: read me
+author: zbule
+---
+
 # BlueStar Theme
 
 A clean, responsive Jekyll theme designed for documentation and game-dev sites.  
