@@ -41,6 +41,7 @@ All of the following settings go in your **site** repo’s `_config.yml`. Each h
 | `toc-include-h1`            | `false`       | Whether to include `<h1>` in the generated Table of Contents (via `<meta>` tag).                                                                |
 | `author`                    | *—*           | Default author name (shown in right-panel metadata).                                                                                            |
 | `date` / `last_modified_at` | *auto*        | Page date formatting; if unset, falls back to `site.time`.                                                                                      |
+| `fontawesome_kit`  | unset | defaults to cdnjs.cloudflare.com |
 
 ---
 

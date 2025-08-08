@@ -7,6 +7,23 @@
 <meta name="toc-include-h1" content="{{ site.toc-include-h1 | default: false }}">
 
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% if site.fontawesome_kit %}
+  <!-- Font Awesome Kit -->
+  <script
+    src="https://kit.fontawesome.com/{{ site.fontawesome_kit }}.js"
+    crossorigin="anonymous"
+  ></script>
+{% else %}
+  <!-- Font Awesome CDN CSS fallback -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+{% endif %}
+
 
 {% include style.html %}

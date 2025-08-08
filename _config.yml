@@ -18,6 +18,8 @@ panel_width: 20em
 accent_color: red
 content_max: 70em
 
+fontawesome_kit: fe2b0ce82c
+
 nav:
   - title: 🏠 Home
     url: /
