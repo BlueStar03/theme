@@ -7,7 +7,7 @@ title: BlueStar03 Theme
 
 #remote_theme: BlueStar03/theme@v1.0.0
 
-logo: /assets/images/logo.svg
+# logo: /assets/images/logo.svg
 
 toc_icon: fa fa-list
 
