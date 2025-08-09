@@ -370,3 +370,29 @@ aside li > ol, aside li > ul {
 }
 
 
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 0.9em;
+  margin: 0.5em 0 1em;
+  color: var(--color-text-alt);
+}
+.breadcrumbs .crumb {
+  color: var(--color-accent);
+  text-decoration: none;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+}
+.breadcrumbs .crumb:hover,
+.breadcrumbs .crumb:focus {
+  background: var(--color-accent);
+  color: var(--color-text);
+}
+.breadcrumbs .crumb.current {
+  color: var(--color-text);
+  font-weight: bold;
+}
+.breadcrumbs .crumb-sep {
+  color: var(--color-text-alt);
+}

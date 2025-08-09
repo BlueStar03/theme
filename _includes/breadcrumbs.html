@@ -1,0 +1,33 @@
+{% comment %} Build breadcrumbs from URL {% endcomment %}
+{% assign segments = page.url | split: '/' %}
+{% assign last_nonempty = '' %}
+{% for s in segments %}
+  {% if s != '' %}{% assign last_nonempty = s %}{% endif %}
+{% endfor %}
+
+<nav class="breadcrumbs">
+  <!-- Home link -->
+  <a class="crumb" href="{{ '/' | relative_url }}">{{ site.title | default: 'Home' }}</a>
+
+  {% assign current_path = '' %}
+  {% for s in segments %}
+    {% if s == '' %}{% continue %}{% endif %}
+
+    {% assign skip = false %}
+    {% for ex in site.breadcrumbs_exclude %}
+      {% if s == ex %}{% assign skip = true %}{% endif %}
+    {% endfor %}
+    {% if skip %}{% continue %}{% endif %}
+
+    {% assign current_path = current_path | append: '/' | append: s %}
+    {% assign pretty = site.data.breadcrumb_titles[s] 
+        | default: (s | replace:'-',' ' | replace:'%20',' ' | capitalize) %}
+
+    {% if s == last_nonempty %}
+      <span class="crumb current">{{ page.title | default: pretty }}</span>
+    {% else %}
+      <span class="crumb-sep">›</span>
+      <a class="crumb" href="{{ current_path | append: '/' | relative_url }}">{{ pretty }}</a>
+    {% endif %}
+  {% endfor %}
+</nav>

@@ -68,3 +68,9 @@ defaults:
       path: ""
     values:
       layout: "default"
+
+docs: Documentation
+api: API Reference
+gdd: Game Design Doc
+breadcrumbs_exclude: [ 'assets', 'images', 'tags' ]
+
